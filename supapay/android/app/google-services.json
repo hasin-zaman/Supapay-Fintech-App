@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069540851368",
+    "project_id": "supapay-d5baf",
+    "storage_bucket": "supapay-d5baf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069540851368:android:525bce21d53ef1caa78c9d",
+        "android_client_info": {
+          "package_name": "com.example.supapay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPw7zu9D_BJrJD-YLgncJkGNMvm2aV740"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

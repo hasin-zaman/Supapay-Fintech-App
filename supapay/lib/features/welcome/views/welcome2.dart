@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:supapay/components/customButton.dart';
-import 'package:supapay/views/welcome/welcome3.dart';
-import '../../components/welcomeCard.dart';
+import 'package:supapay/features/welcome/views/welcome3.dart';
+
+import '../components/custom_button.dart';
+import '../components/welcome_card.dart';
 
 class Welcome2 extends StatelessWidget {
   const Welcome2({Key? key}) : super(key: key);
@@ -10,23 +11,28 @@ class Welcome2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Color(0xFFEEF2E6),
+          backgroundColor: const Color(0xFFEEF2E6),
           body: Center(
             child: Column(
               children: [
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                     child: Image.asset("assets/welcome2.png")),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 WelcomeCard(
                   title: "Connect All Wallets!",
                   subTitle: "Lorem ipsum dolor sit amet, consectetur adipisci",
                   button: CustomButton(
                     buttonText: "Next",
-                    buttonColor: Color(0xFFEEF2E6),
-                    textColor: Color(0xFF1C6758),
-                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome3()));},
+                    buttonColor: const Color(0xFFEEF2E6),
+                    textColor: const Color(0xFF1C6758),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Welcome3()));
+                    },
                   ),
                 ),
               ],
