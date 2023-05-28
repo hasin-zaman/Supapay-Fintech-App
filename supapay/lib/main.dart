@@ -17,11 +17,10 @@ class MyApp extends StatelessWidget {
         title: 'SupaPay',
         debugShowCheckedModeBanner: false,
         color: Colors.blue,
-        initialRoute: '/',
+        initialRoute: '/home',
         routes: routes,
         theme: lightTheme(),
         darkTheme: darkTheme(),
-        themeMode: ThemeMode.system,
-        home: null);
+        themeMode: ThemeMode.system,);
   }
 }
