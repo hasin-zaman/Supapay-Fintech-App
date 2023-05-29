@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supapay/features/home/bloc/home_bloc.dart';
 import 'package:supapay/features/home/components/bottom_app_bar.dart';
+import 'package:supapay/features/home/views/card_page.dart';
 import 'package:supapay/features/home/views/profile_page.dart';
 import '../components/qr_button.dart';
 import 'home_page.dart';
@@ -52,7 +53,7 @@ class Home extends StatelessWidget {
                   return [
                     HomeScreen(
                         transactions: transactions, onRefresh: _onRefreshHome),
-                    const Text('Cards'),
+                    const CardScreen(),
                     const Text('Savings'),
                     const ProfileScreen()
                   ][_selectedIndex];

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     Key? key,
-    required this.transactions, required this.onRefresh,
+    required this.transactions,
+    required this.onRefresh,
   }) : super(key: key);
 
   final List<int> transactions;
@@ -24,11 +25,12 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ListTile(
-                    leading:
-                        CircleAvatar(child: Icon(Icons.person)),
-                    title: Text("Owais"),
-                    subtitle: Text("Hello There!"),
+                  ListTile(
+                    leading: const CircleAvatar(child: Icon(Icons.person)),
+                    title: const Text("Owais"),
+                    trailing: Image.network(
+                        'https://static.vecteezy.com/system/resources/previews/022/100/815/non_2x/master-card-logo-transparent-free-png.png'),
+                    subtitle: const Text("Hello There!"),
                   ),
                   const ListTile(
                     title: Text("Total Balance:"),
@@ -43,8 +45,7 @@ class HomeScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Row(
-                      mainAxisAlignment:
-                          MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: [
@@ -60,8 +61,7 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             IconButton(
                               iconSize: 35,
-                              icon: const Icon(
-                                  Icons.monetization_on),
+                              icon: const Icon(Icons.monetization_on),
                               onPressed: () {},
                             ),
                             const Text("Add Funds"),
@@ -71,8 +71,7 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             IconButton(
                               iconSize: 35,
-                              icon: const Icon(
-                                  Icons.more_horiz_outlined),
+                              icon: const Icon(Icons.more_horiz_outlined),
                               onPressed: () {},
                             ),
                             const Text("More")
@@ -86,8 +85,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(
-                  left: 16.0, top: 16.0, bottom: 16.0),
+              padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 16.0),
               child: Text(
                 "Recent Transactions",
                 style: TextStyle(fontSize: 25),
