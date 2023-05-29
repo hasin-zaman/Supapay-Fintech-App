@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routes: routes,
       theme: lightTheme(),
       darkTheme: darkTheme(),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
     );
   }
 }
