@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({
+    Key? key,
+    required this.transactions, required this.onRefresh,
+  }) : super(key: key);
+
+  final List<int> transactions;
+  final Function onRefresh;
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () {
+        return onRefresh();
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Card(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const ListTile(
+                    leading:
+                        CircleAvatar(child: Icon(Icons.person)),
+                    title: Text("Owais"),
+                    subtitle: Text("Hello There!"),
+                  ),
+                  const ListTile(
+                    title: Text("Total Balance:"),
+                    trailing: Text(
+                      "Rs. 32100",
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          children: [
+                            IconButton(
+                              iconSize: 35,
+                              icon: const Icon(Icons.send),
+                              onPressed: () {},
+                            ),
+                            const Text("Send Funds"),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            IconButton(
+                              iconSize: 35,
+                              icon: const Icon(
+                                  Icons.monetization_on),
+                              onPressed: () {},
+                            ),
+                            const Text("Add Funds"),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            IconButton(
+                              iconSize: 35,
+                              icon: const Icon(
+                                  Icons.more_horiz_outlined),
+                              onPressed: () {},
+                            ),
+                            const Text("More")
+                          ],
+                        )
+                      ]),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                  left: 16.0, top: 16.0, bottom: 16.0),
+              child: Text(
+                "Recent Transactions",
+                style: TextStyle(fontSize: 25),
+              ),
+            ),
+            for (var _ in transactions)
+              const Card(
+                  child: ListTile(
+                leading: Icon(
+                  Icons.arrow_circle_right_rounded,
+                  color: Colors.green,
+                ),
+                title: Text("Name"),
+                subtitle: Text("Date"),
+                trailing: Text("Amount"),
+              )),
+            const Card(
+              child: ListTile(
+                title: Text("See More"),
+                trailing: Icon(Icons.arrow_forward_ios_rounded),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
