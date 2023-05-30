@@ -95,15 +95,18 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             for (var _ in transactions)
-              const Card(
+              Card(
                   child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.arrow_circle_right_rounded,
                   color: Colors.green,
                 ),
-                title: Text("Name"),
-                subtitle: Text("Date"),
-                trailing: Text("Amount"),
+                title: const Text("Name"),
+                subtitle: const Text("Date"),
+                trailing: const Text("Amount"),
+                onTap: () {
+                  showTransactionInfo(context);
+                },
               )),
             const Card(
               child: ListTile(
