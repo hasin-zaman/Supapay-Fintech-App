@@ -24,7 +24,7 @@ class CardScreen extends StatelessWidget {
             glassmorphismConfig: Glassmorphism(
               blurX: 5.0,
               blurY: 5.0,
-              gradient: LinearGradient(                
+              gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: <Color>[
@@ -39,10 +39,13 @@ class CardScreen extends StatelessWidget {
             cvvCode: '571',
             showBackView: false,
           ),
-          const ListTile(
-            leading: Icon(Icons.atm_rounded),
-            title: Text("Show ATMs"),
-            trailing: Icon(Icons.arrow_forward_ios_rounded),
+          ListTile(
+            leading: const Icon(Icons.atm_rounded),
+            title: const Text("Show ATMs"),
+            trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            onTap: () {
+              Navigator.pushNamed(context, '/home/atms');
+            },
           )
         ],
       ),

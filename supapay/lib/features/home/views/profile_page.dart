@@ -48,11 +48,14 @@ class ProfileScreen extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios_rounded),
             ),
           ),
-          const Card(
+          Card(
             child: ListTile(
-              leading: Icon(Icons.contact_support),
-              title: Text("Customer Support"),
-              trailing: Icon(Icons.arrow_forward_ios_rounded),
+              leading: const Icon(Icons.contact_support),
+              title: const Text("Customer Support"),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded),
+              onTap: () {
+                Navigator.pushNamed(context, '/home/support');
+              },
             ),
           ),
           const Card(

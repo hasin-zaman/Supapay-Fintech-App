@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supapay/features/home/components/bottom_sheet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -72,7 +73,9 @@ class HomeScreen extends StatelessWidget {
                             IconButton(
                               iconSize: 35,
                               icon: const Icon(Icons.more_horiz_outlined),
-                              onPressed: () {},
+                              onPressed: () {
+                                bottomSheetMore(context);
+                              },
                             ),
                             const Text("More")
                           ],
