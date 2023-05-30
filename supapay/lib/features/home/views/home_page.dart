@@ -108,10 +108,13 @@ class HomeScreen extends StatelessWidget {
                   showTransactionInfo(context);
                 },
               )),
-            const Card(
+            Card(
               child: ListTile(
-                title: Text("See More"),
-                trailing: Icon(Icons.arrow_forward_ios_rounded),
+                title: const Text("See More"),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                onTap: () {
+                  Navigator.pushNamed(context, '/home/transactions');
+                },
               ),
             )
           ],
