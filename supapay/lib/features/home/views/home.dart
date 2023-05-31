@@ -4,6 +4,7 @@ import 'package:supapay/features/home/bloc/home_bloc.dart';
 import 'package:supapay/features/home/components/bottom_app_bar.dart';
 import 'package:supapay/features/home/views/card_page.dart';
 import 'package:supapay/features/home/views/profile_page.dart';
+import 'package:supapay/features/home/views/savings_page.dart';
 import '../components/qr_button.dart';
 import 'home_page.dart';
 
@@ -54,7 +55,7 @@ class Home extends StatelessWidget {
                     HomeScreen(
                         transactions: transactions, onRefresh: _onRefreshHome),
                     const CardScreen(),
-                    const Text('Savings'),
+                    const SavingsPage(),
                     const ProfileScreen()
                   ][_selectedIndex];
                 } else {
