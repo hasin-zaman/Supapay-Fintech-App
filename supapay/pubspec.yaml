@@ -42,6 +42,12 @@ dependencies:
   provider: ^6.0.5
   bloc: ^8.1.2
   pinput: ^2.2.31
+  flutter_credit_card: ^3.0.6
+  qr_flutter: ^4.0.0
+  mobile_scanner: ^3.2.0
+  google_maps_flutter: ^2.2.8
+  location: ^4.4.0
+  # http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +59,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.2.18
+
+flutter_native_splash:
+  color: "#3d3d3d"
+  image: assets/splash.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

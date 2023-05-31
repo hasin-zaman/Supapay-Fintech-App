@@ -11,6 +11,10 @@ class HomeLoadingState extends HomeState {}
 
 class HomeLoadedState extends HomeState {}
 
-class HomeErrorState extends HomeState {}
+class HomeErrorState extends HomeState {
+  final String e;
+
+  HomeErrorState(this.e);
+}
 
 
