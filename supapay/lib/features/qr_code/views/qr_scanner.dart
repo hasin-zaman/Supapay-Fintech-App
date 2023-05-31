@@ -26,7 +26,7 @@ class ScanQrPage extends StatelessWidget {
               break;
           }
         }
-          Navigator.pop(context, value);
+          Navigator.popAndPushNamed(context, '/home/sendFunds', arguments: value);
       },
     );
   }

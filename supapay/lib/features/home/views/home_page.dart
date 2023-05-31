@@ -53,7 +53,9 @@ class HomeScreen extends StatelessWidget {
                             IconButton(
                               iconSize: 35,
                               icon: const Icon(Icons.send),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/home/sendFunds');
+                              },
                             ),
                             const Text("Send Funds"),
                           ],

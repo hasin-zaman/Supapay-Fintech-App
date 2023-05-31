@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 
 class AddFundsPage extends StatelessWidget {
   const AddFundsPage({super.key});
@@ -12,26 +12,52 @@ class AddFundsPage extends StatelessWidget {
           title: const Text("Add Funds"),
           centerTitle: true,
         ),
-        body: Column(children: const [
-          SizedBox(
+        body: Column(children: [
+          const SizedBox(
             height: 20,
           ),
           Card(
             child: ListTile(
-              title: Text("Account Number"),
-              trailing: Text("03110887898"),
+              title: const Text("Account Number"),
+              trailing: const Text("03110887898"),
+              onTap: () {
+                Clipboard.setData(const ClipboardData(text: '03110887898'))
+                    .then((_) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.green,
+                      content: Row(
+                        children: const [
+                          Icon(Icons.check),
+                          Text("Copied to clipboard"),
+                        ],
+                      )));
+                });
+              },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Card(
             child: ListTile(
-              title: Text("IBAN"),
-              trailing: Text("XXXXXXXXX"),
+              title: const Text("IBAN"),
+              trailing: const Text("XXXXXXXXX"),
+              onTap: () {
+                Clipboard.setData(const ClipboardData(text: 'XXXXXXXXX'))
+                    .then((_) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.green,
+                      content: Row(
+                        children: const [
+                          Icon(Icons.check),
+                          Text("Copied to clipboard"),
+                        ],
+                      )));
+                });
+              },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           )
         ]),
