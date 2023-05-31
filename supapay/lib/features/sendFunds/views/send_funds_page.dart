@@ -22,11 +22,18 @@ class SendFundsPage extends StatelessWidget {
         builder: (context, state) {
           return SingleChildScrollView(
             child: Column(children: [
+              Row(
+                children: const [
+                  Spacer(),
+                  Icon(Icons.send_rounded, size: 100),
+                  Spacer()
+                ],
+              ),
               Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                    const SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Padding(
@@ -39,11 +46,11 @@ class SendFundsPage extends StatelessWidget {
                             if (value == null || value.isEmpty) {
                               return 'Please enter Account Number';
                             }
-                            
+
                             if (double.tryParse(value) == null) {
                               return "Please enter a valid Amount";
                             }
-                            
+
                             return null;
                           },
                           decoration: const InputDecoration(
