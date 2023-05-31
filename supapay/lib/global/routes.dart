@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supapay/features/home/views/home_screen.dart';
+import 'package:supapay/features/signup/views/congratulations.dart';
 import 'package:supapay/features/signup/views/otp.dart';
 import 'package:supapay/features/signup/views/phone_verification.dart';
 import 'package:supapay/features/signup/views/signup.dart';
@@ -11,6 +12,7 @@ Map<String, WidgetBuilder> get routes {
       '/signup':(context) => const Signup(),
       '/phone-verification':(context) => const PhoneVerification(),
       '/otp':(context) => const OTP(),
+      '/congratulations':(context) => const Congratulations(),
       '/home':(context) => const Home(),
       };
   }
