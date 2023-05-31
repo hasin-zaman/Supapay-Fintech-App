@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:supapay/features/home/models/user_model.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     Key? key,
+    required this.userData
   }) : super(key: key);
+
+  final User userData;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,9 @@ class ProfileScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Card(
-            child: Column(children: const [
-              ListTile(),
-              CircleAvatar(
+            child: Column(children: [
+              const ListTile(),
+              const CircleAvatar(
                 radius: 30,
                 child: Icon(
                   Icons.person,
@@ -24,20 +28,20 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 16.0),
+                padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
-                  "UserName",
-                  style: TextStyle(fontSize: 20),
+                  "${userData.name}",
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
-              ListTile(),
+              const ListTile(),
               ListTile(
-                title: Text("Account Number"),
-                trailing: Text("Number"),
+                title: const Text("Account Number"),
+                trailing: Text('${userData.accountNumber}'),
               ),
               ListTile(
-                title: Text("Email"),
-                trailing: Text("Email"),
+                title: const Text("Email"),
+                trailing: Text("${userData.email}"),
               ),
             ]),
           ),

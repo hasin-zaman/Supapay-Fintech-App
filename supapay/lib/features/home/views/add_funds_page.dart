@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/user_model.dart';
+
 class AddFundsPage extends StatelessWidget {
   const AddFundsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userData = ModalRoute.of(context)?.settings.arguments as User;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -19,9 +22,9 @@ class AddFundsPage extends StatelessWidget {
           Card(
             child: ListTile(
               title: const Text("Account Number"),
-              trailing: const Text("03110887898"),
+              trailing: Text(userData.accountNumber!),
               onTap: () {
-                Clipboard.setData(const ClipboardData(text: '03110887898'))
+                Clipboard.setData(ClipboardData(text: userData.accountNumber!))
                     .then((_) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: Colors.green,
@@ -41,10 +44,9 @@ class AddFundsPage extends StatelessWidget {
           Card(
             child: ListTile(
               title: const Text("IBAN"),
-              trailing: const Text("XXXXXXXXX"),
+              trailing: Text(userData.iban!),
               onTap: () {
-                Clipboard.setData(const ClipboardData(text: 'XXXXXXXXX'))
-                    .then((_) {
+                Clipboard.setData(ClipboardData(text: userData.iban)).then((_) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: Colors.green,
                       content: Row(

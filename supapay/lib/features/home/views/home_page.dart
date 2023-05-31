@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:supapay/features/home/components/bottom_sheet.dart';
+import 'package:supapay/features/home/models/transaction_model.dart';
+import 'package:supapay/features/home/models/user_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     Key? key,
     required this.transactions,
     required this.onRefresh,
+    required this.userData,
   }) : super(key: key);
 
-  final List<int> transactions;
+  final List<TransactionModel> transactions;
   final Function onRefresh;
+  final User userData;
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +32,16 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: const CircleAvatar(child: Icon(Icons.person)),
-                    title: const Text("Owais"),
+                    title: Text(userData.name!),
                     trailing: Image.network(
                         'https://static.vecteezy.com/system/resources/previews/022/100/815/non_2x/master-card-logo-transparent-free-png.png'),
                     subtitle: const Text("Hello There!"),
                   ),
-                  const ListTile(
-                    title: Text("Total Balance:"),
+                  ListTile(
+                    title: const Text("Total Balance:"),
                     trailing: Text(
-                      "Rs. 32100",
-                      style: TextStyle(
+                      "Rs. ${userData.balance}",
+                      style: const TextStyle(
                         fontSize: 30,
                       ),
                     ),
@@ -66,7 +70,8 @@ class HomeScreen extends StatelessWidget {
                               iconSize: 35,
                               icon: const Icon(Icons.monetization_on),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/home/addFunds');
+                                Navigator.pushNamed(context, '/home/addFunds',
+                                    arguments: userData);
                               },
                             ),
                             const Text("Add Funds"),
@@ -98,18 +103,30 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 25),
               ),
             ),
-            for (var _ in transactions)
-              Card(
+            for (var data in transactions)
+              data.amount! > 0 ? Card(
                   child: ListTile(
                 leading: const Icon(
                   Icons.arrow_circle_right_rounded,
                   color: Colors.green,
                 ),
-                title: const Text("Name"),
-                subtitle: const Text("Date"),
-                trailing: const Text("Amount"),
+                title: Text(data.from!),
+                subtitle: Text(data.date!),
+                trailing: Text(data.amount.toString()),
                 onTap: () {
-                  showTransactionInfo(context);
+                  showTransactionInfo(context, data);
+                },
+              )): Card(
+                  child: ListTile(
+                leading: const Icon(
+                  Icons.arrow_circle_left_rounded,
+                  color: Colors.red,
+                ),
+                title: Text(data.to!),
+                subtitle: Text(data.date!),
+                trailing: Text(data.amount.toString()),
+                onTap: () {
+                  showTransactionInfo(context, data);
                 },
               )),
             Card(
