@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supapay/features/welcome/views/welcome3.dart';
+import 'package:supapay/global/components/custom_button.dart';
 
-import '../components/custom_button.dart';
 import '../components/welcome_card.dart';
 
 class Welcome2 extends StatelessWidget {
@@ -12,14 +12,17 @@ class Welcome2 extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           backgroundColor: const Color(0xFFEEF2E6),
+          appBar: AppBar(
+            backgroundColor: const Color(0xFFEEF2E6),
+          ),
           body: Center(
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                const Spacer(),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                     child: Image.asset("assets/welcome2.png")),
-                const SizedBox(height: 40),
+                const Spacer(),
                 WelcomeCard(
                   title: "Connect All Wallets!",
                   subTitle: "Lorem ipsum dolor sit amet, consectetur adipisci",
@@ -35,6 +38,7 @@ class Welcome2 extends StatelessWidget {
                     },
                   ),
                 ),
+                SizedBox(height: 30)
               ],
             ),
           )),

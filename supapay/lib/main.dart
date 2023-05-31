@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'SupaPay',
         debugShowCheckedModeBanner: false,
         color: Colors.blue,
-        initialRoute: '/home',
+        initialRoute: '/welcome',
         routes: routes,
         theme: lightTheme(),
         darkTheme: darkTheme(),
