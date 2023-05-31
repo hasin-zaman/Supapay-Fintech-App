@@ -58,7 +58,10 @@ class HomeScreen extends StatelessWidget {
                               iconSize: 35,
                               icon: const Icon(Icons.send),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/home/sendFunds');
+                                Navigator.pushNamed(context, '/home/sendFunds')
+                                    .whenComplete(() {
+                                      onRefresh();
+                                    });
                               },
                             ),
                             const Text("Send Funds"),
@@ -104,31 +107,33 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             for (var data in transactions)
-              data.amount! > 0 ? Card(
-                  child: ListTile(
-                leading: const Icon(
-                  Icons.arrow_circle_right_rounded,
-                  color: Colors.green,
-                ),
-                title: Text(data.from!),
-                subtitle: Text(data.date!),
-                trailing: Text(data.amount.toString()),
-                onTap: () {
-                  showTransactionInfo(context, data);
-                },
-              )): Card(
-                  child: ListTile(
-                leading: const Icon(
-                  Icons.arrow_circle_left_rounded,
-                  color: Colors.red,
-                ),
-                title: Text(data.to!),
-                subtitle: Text(data.date!),
-                trailing: Text(data.amount.toString()),
-                onTap: () {
-                  showTransactionInfo(context, data);
-                },
-              )),
+              data.amount! > 0
+                  ? Card(
+                      child: ListTile(
+                      leading: const Icon(
+                        Icons.arrow_circle_right_rounded,
+                        color: Colors.green,
+                      ),
+                      title: Text(data.from!),
+                      subtitle: Text(data.date!),
+                      trailing: Text(data.amount.toString()),
+                      onTap: () {
+                        showTransactionInfo(context, data);
+                      },
+                    ))
+                  : Card(
+                      child: ListTile(
+                      leading: const Icon(
+                        Icons.arrow_circle_left_rounded,
+                        color: Colors.red,
+                      ),
+                      title: Text(data.to!),
+                      subtitle: Text(data.date!),
+                      trailing: Text(data.amount.toString()),
+                      onTap: () {
+                        showTransactionInfo(context, data);
+                      },
+                    )),
             Card(
               child: ListTile(
                 title: const Text("See More"),

@@ -16,7 +16,7 @@ Future<User> fetchUser() async {
 
 Future<List<TransactionModel>> fetchTransactions() async {
   List<TransactionModel> transactionsList = [];
-  final snapshot = await transactionsCollection.limit(5).get();
+  final snapshot = await transactionsCollection.limit(6).get();
   for (var queryDocumentSnapshot in snapshot.docs) {
     Map<String, dynamic> data = queryDocumentSnapshot.data();
     data['id'] = queryDocumentSnapshot.id;
