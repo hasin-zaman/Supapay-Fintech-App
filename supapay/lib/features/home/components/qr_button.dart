@@ -8,7 +8,9 @@ class QRCodeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, '/home/qr');
+      },
       tooltip: "Scan Code",
       child: const Icon(Icons.qr_code_scanner_rounded),
     );

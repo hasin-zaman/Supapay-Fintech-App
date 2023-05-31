@@ -14,13 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'SupaPay',
-        debugShowCheckedModeBanner: false,
-        color: Colors.blue,
-        initialRoute: '/home',
-        routes: routes,
-        theme: lightTheme(),
-        darkTheme: darkTheme(),
-        themeMode: ThemeMode.system,);
+      title: 'SupaPay',
+      debugShowCheckedModeBanner: false,
+      color: Colors.blue,
+      initialRoute: '/home',
+      routes: routes,
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
+      themeMode: ThemeMode.system,
+    );
   }
 }
