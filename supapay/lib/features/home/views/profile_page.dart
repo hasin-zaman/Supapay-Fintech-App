@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/features/home/models/user_model.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({
-    Key? key,
-    required this.userData
-  }) : super(key: key);
+  const ProfileScreen({Key? key, required this.userData}) : super(key: key);
 
   final UserModel userData;
 
@@ -62,11 +60,18 @@ class ProfileScreen extends StatelessWidget {
               },
             ),
           ),
-          const Card(
+          Card(
             child: ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Log Out"),
-              trailing: Icon(Icons.arrow_forward_ios_rounded),
+              onTap: () async {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/welcome', (Route<dynamic> route) => false);
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                prefs.clear();
+              },
+              leading: const Icon(Icons.logout),
+              title: const Text("Log Out"),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded),
             ),
           )
         ],
