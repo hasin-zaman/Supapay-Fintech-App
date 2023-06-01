@@ -22,10 +22,10 @@ class WelcomeCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
-        height: 240,
+        height: 230,
         child: Column(
           children: [
-            SizedBox(height: 30),
+            Spacer(),
             Text(
               title,
               style: const TextStyle(

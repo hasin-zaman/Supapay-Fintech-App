@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/features/signup/components/pin_code.dart';
 import 'package:supapay/features/signup/components/signup_progress_indicator.dart';
 import 'package:supapay/features/signup/models/user_model.dart';
@@ -61,6 +62,10 @@ class OTP extends StatelessWidget {
                         await auth.signInWithCredential(credential);
                         final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
                         final userData = userDataProvider.userData!;
+
+                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('phone', userData.phone);
+
                         await saveUser(userData);
                         userDataProvider.clearUserData();
 
@@ -81,7 +86,8 @@ class OTP extends StatelessWidget {
                           fontSize: 16,
                           color: Colors.black87
                         ),
-                      ))
+                      )
+                  ),
                 ],
               ),
             ),

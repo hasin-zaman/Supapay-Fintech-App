@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supapay/features/login/views/login.dart';
 import 'package:supapay/features/signup/views/congratulations.dart';
 import 'package:supapay/features/signup/views/otp.dart';
 import 'package:supapay/features/signup/views/phone_verification.dart';
@@ -19,6 +20,7 @@ Map<String, WidgetBuilder> get routes {
     '/phone-verification': (context) => const PhoneVerification(),
     '/otp': (context) => const OTP(),
     '/congratulations': (context) => const Congratulations(),
+    '/login': (context) => const Login(),
     '/home': (context) => Home(),
     '/home/qr': (context) => const QRScreen(),
     '/home/atms': (context) => const ATMInfo(),
