@@ -5,6 +5,11 @@ abstract class HomeEvent {}
 
 class HomeInitialEvent extends HomeEvent {}
 
-class HomePageUpdateEvent extends HomeEvent {}
+class HomePageUpdateEvent extends HomeEvent {
+  final User userData;
+  final List<TransactionModel> transactions;
+
+  HomePageUpdateEvent(this.userData, this.transactions);
+}
 
 class HomePageRefreshEvent extends HomeEvent {}

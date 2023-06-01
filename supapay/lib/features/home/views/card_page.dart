@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+
+import '../models/user_model.dart';
 
 class CardScreen extends StatelessWidget {
   const CardScreen({
-    Key? key,
+    Key? key, required this.userData,
   }) : super(key: key);
+
+  final User userData;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +38,12 @@ class CardScreen extends StatelessWidget {
                 ],
               ),
             ),
-            cardNumber: '5339402848724984',
-            expiryDate: '12/26',
-            cardHolderName: 'Username',
-            cvvCode: '571',
+            cardNumber: userData.cardNumber!,
+            expiryDate: userData.expiryDate!,
+            cardHolderName: userData.name!,
+            cvvCode: userData.cvvCode!,
             showBackView: false,
-          ),
+          ).animate().shimmer(),
           ListTile(
             leading: const Icon(Icons.atm_rounded),
             title: const Text("Show ATMs"),
