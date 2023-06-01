@@ -13,7 +13,7 @@ class Login extends StatelessWidget {
     try {
       final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
           .collection(''
-          'Users')
+          'users')
           .where('phone', isEqualTo: phone)
           .limit(1)
           .get();
@@ -36,58 +36,60 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Color(0xFF1C6758),
-                Color(0xFF26806E),
-                Color(0xFF279C84),
-              ],
-            begin: Alignment.topRight
-          )
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("assets/splash.png", width: 200),
-              SizedBox(height: 100),
-              PassCode(),
-              SizedBox(height: 50),
-              CustomButton(
-                buttonText: "Login",
-                buttonColor: const Color(0xFFEEF2E6),
-                textColor: const Color(0xFF1C6758),
-                onTap: () async {
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  final String? phone = prefs.getString('phone');
-                  final String? passcode=await getPasscode(phone);
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color(0xFF1C6758),
+                  Color(0xFF26806E),
+                  Color(0xFF279C84),
+                ],
+              begin: Alignment.topRight
+            )
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset("assets/splash.png", width: 200),
+                SizedBox(height: 100),
+                PassCode(),
+                SizedBox(height: 50),
+                CustomButton(
+                  buttonText: "Login",
+                  buttonColor: const Color(0xFFEEF2E6),
+                  textColor: const Color(0xFF1C6758),
+                  onTap: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    final String? phone = prefs.getString('phone');
+                    final String? passcode=await getPasscode(phone);
 
-                  if(passcode==code){
-                    code="";
-                    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-                  }
-                  else{
-                    print("Error occured. Login failed.");
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Forgot Pin Number?',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white70
-                    ),
-                  )
-              ),
-              SizedBox(height: 100)
-            ],
+                    if(passcode==code){
+                      code="";
+                      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                    }
+                    else{
+                      print("Error occured. Login failed.");
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forgot Pin Number?',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white70
+                      ),
+                    )
+                ),
+                SizedBox(height: 100)
+              ],
+            ),
           ),
         ),
       ),

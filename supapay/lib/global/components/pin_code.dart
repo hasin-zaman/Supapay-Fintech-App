@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:supapay/features/login/views/otp.dart';
 import 'package:supapay/features/signup/views/otp.dart';
-import 'package:supapay/features/signup/views/phone_verification.dart';
 
 class PinCode extends StatelessWidget {
   const PinCode({Key? key, required this.length}) : super(key: key);
@@ -38,6 +38,7 @@ class PinCode extends StatelessWidget {
         showCursor: true,
         onChanged: (value) {
           OTP.otp=value;
+          OTPLogin.otp=value;
         }
     );
   }

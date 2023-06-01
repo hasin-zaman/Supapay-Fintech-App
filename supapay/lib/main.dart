@@ -14,7 +14,7 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
       create: (_) => UserDataProvider(),
-      child: MyApp(initialRoute: isSignedUp ? '/login' : '/welcome')));
+      child: MyApp(initialRoute: isSignedUp ? '/welcome' : '/welcome')));
 }
 
 class MyApp extends StatelessWidget {
