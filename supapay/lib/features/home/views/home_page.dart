@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:supapay/features/home/components/bottom_sheet.dart';
 import 'package:supapay/features/home/models/transaction_model.dart';
 import 'package:supapay/features/home/models/user_model.dart';
@@ -60,8 +61,8 @@ class HomeScreen extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pushNamed(context, '/home/sendFunds')
                                     .whenComplete(() {
-                                      onRefresh();
-                                    });
+                                  onRefresh();
+                                });
                               },
                             ),
                             const Text("Send Funds"),
@@ -98,14 +99,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+            ).animate().fadeIn().shimmer(),
             const Padding(
               padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 16.0),
               child: Text(
                 "Recent Transactions",
                 style: TextStyle(fontSize: 25),
               ),
-            ),
+            ).animate().fadeIn(),
             for (var data in transactions)
               data.amount! > 0
                   ? Card(
@@ -120,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         showTransactionInfo(context, data);
                       },
-                    ))
+                    )).animate().fadeIn()
                   : Card(
                       child: ListTile(
                       leading: const Icon(
@@ -133,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         showTransactionInfo(context, data);
                       },
-                    )),
+                    )).animate().fadeIn(),
             Card(
               child: ListTile(
                 title: const Text("See More"),
@@ -142,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/home/transactions');
                 },
               ),
-            )
+            ).animate().fadeIn()
           ],
         ),
       ),

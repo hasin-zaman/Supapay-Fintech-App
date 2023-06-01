@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supapay/features/transactions/bloc/transactions_bloc.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../components/bottom_sheet.dart';
 
@@ -63,7 +64,7 @@ class TransactionsScreen extends StatelessWidget {
                           },
                         ));
                 },
-              );
+              ).animate().fadeIn();
             } else {
               return const Center(child: Text("Error"));
             }

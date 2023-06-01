@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../models/user_model.dart';
 
@@ -42,7 +43,7 @@ class CardScreen extends StatelessWidget {
             cardHolderName: userData.name!,
             cvvCode: userData.cvvCode!,
             showBackView: false,
-          ),
+          ).animate().shimmer(),
           ListTile(
             leading: const Icon(Icons.atm_rounded),
             title: const Text("Show ATMs"),
