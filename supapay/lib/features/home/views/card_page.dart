@@ -9,7 +9,7 @@ class CardScreen extends StatelessWidget {
     Key? key, required this.userData,
   }) : super(key: key);
 
-  final User userData;
+  final UserModel userData;
 
   @override
   Widget build(BuildContext context) {

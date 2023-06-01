@@ -8,7 +8,7 @@ class AddFundsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userData = ModalRoute.of(context)?.settings.arguments as User;
+    final userData = ModalRoute.of(context)?.settings.arguments as UserModel;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

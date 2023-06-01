@@ -5,7 +5,7 @@ import '../models/user_model.dart';
 class SavingsPage extends StatelessWidget {
   const SavingsPage({super.key, required this.userData});
 
-  final User userData;
+  final UserModel userData;
 
   @override
   Widget build(BuildContext context) {

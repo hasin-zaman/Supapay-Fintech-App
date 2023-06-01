@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   final List<TransactionModel> transactions;
   final Function onRefresh;
-  final User userData;
+  final UserModel userData;
 
   @override
   Widget build(BuildContext context) {

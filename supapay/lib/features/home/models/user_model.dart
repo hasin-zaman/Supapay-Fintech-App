@@ -1,4 +1,4 @@
-class User {
+class UserModel {
   String? name;
   String? email;
   String? accountNumber;
@@ -10,9 +10,9 @@ class User {
   int? monthlyIncome;
   int? balance;
 
-  User({this.name, this.email, this.accountNumber});
+  UserModel({this.name, this.email, this.accountNumber});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     email = json['email'];
     accountNumber = json['accountNumber'];

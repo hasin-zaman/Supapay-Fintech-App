@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/features/signup/components/pin_code.dart';
 import 'package:supapay/features/signup/components/signup_progress_indicator.dart';
 import 'package:supapay/features/signup/models/user_model.dart';
@@ -21,10 +22,12 @@ class OTP extends StatelessWidget {
   Widget build(BuildContext context) {
 
     FirebaseAuth auth = FirebaseAuth.instance;
-
+    
     Future<void> saveUser(UserModel userData) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       final usersCollection = FirebaseFirestore.instance.collection('Users');
-      await usersCollection.add(userData.toMap());
+      await usersCollection.doc(userData.phone).set(userData.toMap());
+      await prefs.setString('accNumber', userData.phone);
     }
 
     return SafeArea(

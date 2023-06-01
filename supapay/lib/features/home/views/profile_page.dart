@@ -7,7 +7,7 @@ class ProfileScreen extends StatelessWidget {
     required this.userData
   }) : super(key: key);
 
-  final User userData;
+  final UserModel userData;
 
   @override
   Widget build(BuildContext context) {

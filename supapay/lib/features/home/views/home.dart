@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
 
   final HomeBloc homeBloc = HomeBloc();
   late List<TransactionModel> transactions;
-  late User userData;
+  late UserModel userData;
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
           return Scaffold(
             appBar: null,
             bottomNavigationBar: bottomAppBar(_selectedIndex, _onItemTapped),
-            floatingActionButton: const QRCodeButton(),
+            floatingActionButton: QRCodeButton(userData: userData,),
             body: StreamBuilder(
               builder: (context, snapshot) {
                 if (state is HomeInitial) {

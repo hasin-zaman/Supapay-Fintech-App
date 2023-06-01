@@ -10,7 +10,7 @@ class HomeInitial extends HomeState {}
 class HomeLoadingState extends HomeState {}
 
 class HomeLoadedState extends HomeState {
-  final User userData;
+  final UserModel userData;
   final List<TransactionModel> transactions;
 
   HomeLoadedState(this.userData, this.transactions);

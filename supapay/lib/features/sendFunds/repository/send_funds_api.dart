@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/features/home/models/user_model.dart';
 
 final collection = FirebaseFirestore.instance.collection('Users');
@@ -9,10 +10,12 @@ Future<String> addTransaction(String accNumber, int amount) async {
   if (!userAcc.exists) {
     return "User Does Not Exist";
   }
-  final userCollection = collection.doc("03110887898");
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final String? userNumber = prefs.getString('accNumber');
+  final userCollection = collection.doc(userNumber);
   final userData = await userCollection.get();
 
-  final user = User.fromJson(userData.data()!);
+  final user = UserModel.fromJson(userData.data()!);
   final userBal = user.balance!;
 
   if (amount > userBal) {

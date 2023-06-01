@@ -3,11 +3,18 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:supapay/features/qr_code/components/app_bar.dart';
 import 'package:supapay/features/qr_code/views/qr_scanner.dart';
 
+import '../../home/models/user_model.dart';
+
 class QRScreen extends StatelessWidget {
   const QRScreen({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
+
+    final userData = ModalRoute.of(context)?.settings.arguments as UserModel;
+
     var color = Theme.of(context).textTheme.bodyText1?.color;
     return DefaultTabController(
       length: 2,
@@ -20,7 +27,7 @@ class QRScreen extends StatelessWidget {
               child: QrImage(
                 foregroundColor: color,
                 padding: const EdgeInsets.all(40.0),
-                data: "03110887898",
+                data: userData.accountNumber!,
                 version: QrVersions.auto,
                 size: 300.0,
               ),
