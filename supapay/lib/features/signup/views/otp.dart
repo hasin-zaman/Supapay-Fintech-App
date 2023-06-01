@@ -64,6 +64,10 @@ class OTP extends StatelessWidget {
                         await auth.signInWithCredential(credential);
                         final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
                         final userData = userDataProvider.userData!;
+
+                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('phone', userData.phone);
+
                         await saveUser(userData);
                         userDataProvider.clearUserData();
 
@@ -84,7 +88,8 @@ class OTP extends StatelessWidget {
                           fontSize: 16,
                           color: Colors.black87
                         ),
-                      ))
+                      )
+                  ),
                 ],
               ),
             ),

@@ -23,16 +23,56 @@ class Welcome3 extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 0, 7.5, 0),
                     child: Image.asset("assets/welcome3.png")),
                 const Spacer(),
-                WelcomeCard(
-                  title: "Get Started!",
-                  subTitle: "Lorem ipsum dolor sit amet, consectetur adipisci",
-                  button: CustomButton(
-                    buttonText: "Create Account",
-                    buttonColor: const Color(0xFF1C6758),
-                    textColor: Color(0xFFEEF2E6),
-                    onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(context, '/signup', (route) => false);
-                    },
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  elevation: 15,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    height: 270,
+                    child: Column(
+                      children: [
+                        Spacer(),
+                        Text(
+                          "Get Started!",
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          "Lorem ipsum dolor sit amet, consectetur adipisci",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              color: Colors.grey),
+                        ),
+                        Spacer(),
+                        CustomButton(
+                          buttonText: "Sign up",
+                          buttonColor: const Color(0xFF1C6758),
+                          textColor: Color(0xFFEEF2E6),
+                          onTap: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/signup', (route) => false);
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        CustomButton(
+                          buttonText: "Sign in",
+                          buttonColor: const Color(0xFFEEF2E6),
+                          textColor: const Color(0xFF1C6758),
+                          onTap: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/login', (route) => false);
+                          },
+                        ),
+                        SizedBox(height: 20)
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 30)
