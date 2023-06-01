@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/features/home/models/user_model.dart';
@@ -63,6 +64,7 @@ class ProfileScreen extends StatelessWidget {
           Card(
             child: ListTile(
               onTap: () async {
+                FirebaseAuth.instance.signOut();
                 Navigator.of(context).pushNamedAndRemoveUntil(
                     '/welcome', (Route<dynamic> route) => false);
                 final SharedPreferences prefs =

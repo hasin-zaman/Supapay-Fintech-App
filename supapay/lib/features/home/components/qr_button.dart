@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../models/user_model.dart';
-
 class QRCodeButton extends StatelessWidget {
   const QRCodeButton({
     Key? key, required this.userData,

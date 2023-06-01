@@ -62,7 +62,7 @@ class Login extends StatelessWidget {
                 textColor: const Color(0xFF1C6758),
                 onTap: () async {
                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                  final String? phone = prefs.getString('phone');
+                  final String? phone = prefs.getString('accNumber');
                   final String? passcode=await getPasscode(phone);
 
                   if(passcode==code){
