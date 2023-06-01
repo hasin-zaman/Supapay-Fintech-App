@@ -1,5 +1,5 @@
 name: supapay
-description: A new Flutter project.
+description: Fintech App.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -62,6 +62,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_native_splash: ^2.2.18
+  golden_toolkit: ^0.15.0
 
 flutter_native_splash:
   color: "#3d3d3d"

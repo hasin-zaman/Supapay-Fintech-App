@@ -7,7 +7,7 @@ class QRCodeButton extends StatelessWidget {
     Key? key, required this.userData,
   }) : super(key: key);
 
-  final UserModel userData;
+  final String userData;
 
   @override
   Widget build(BuildContext context) {

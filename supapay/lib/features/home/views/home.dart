@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
   final HomeBloc homeBloc = HomeBloc();
   late List<TransactionModel> transactions;
   late UserModel userData;
+  String accNumber = '';
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -41,7 +42,7 @@ class Home extends StatelessWidget {
           return Scaffold(
             appBar: null,
             bottomNavigationBar: bottomAppBar(_selectedIndex, _onItemTapped),
-            floatingActionButton: QRCodeButton(userData: userData,),
+            floatingActionButton: QRCodeButton(userData: accNumber,),
             body: StreamBuilder(
               builder: (context, snapshot) {
                 if (state is HomeInitial) {
@@ -56,6 +57,7 @@ class Home extends StatelessWidget {
                 } else if (state is HomeLoadedState) {
                   userData = state.userData;
                   transactions = state.transactions;
+                  accNumber = state.userData.accountNumber!;
                   return [
                     HomeScreen(
                         transactions: transactions,
