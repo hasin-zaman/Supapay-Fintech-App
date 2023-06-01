@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     FirebaseAuth auth = FirebaseAuth.instance;
     final currentUser = auth.currentUser;
 
-    String initialRoute = '/home';
+    String initialRoute = '/login';
 
     if (currentUser == null){
       initialRoute = '/welcome';

@@ -13,7 +13,7 @@ class Login extends StatelessWidget {
     try {
       final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
           .collection(''
-          'users')
+          'Users')
           .where('phone', isEqualTo: phone)
           .limit(1)
           .get();
@@ -91,7 +91,6 @@ class Login extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
