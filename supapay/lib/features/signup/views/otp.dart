@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supapay/features/signup/components/pin_code.dart';
 import 'package:supapay/features/signup/components/signup_progress_indicator.dart';
 import 'package:supapay/features/signup/models/user_model.dart';
 import 'package:supapay/features/signup/views/phone_verification.dart';
 import 'package:supapay/global/components/custom_button.dart';
+import 'package:supapay/global/components/pin_code.dart';
 import 'package:supapay/global/components/view_heading.dart';
 import 'package:supapay/global/components/view_sub_heading.dart';
 
@@ -62,6 +62,7 @@ class OTP extends StatelessWidget {
                       try{
                         PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: PhoneVerification.verificationId, smsCode: otp);
                         await auth.signInWithCredential(credential);
+                        otp="";
                         final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
                         final userData = userDataProvider.userData!;
                         await saveUser(userData);

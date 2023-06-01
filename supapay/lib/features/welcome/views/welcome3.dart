@@ -67,7 +67,7 @@ class Welcome3 extends StatelessWidget {
                           textColor: const Color(0xFF1C6758),
                           onTap: () {
                             Navigator.pushNamedAndRemoveUntil(
-                                context, '/login', (route) => false);
+                                context, '/login/phone-verification', (route) => false);
                           },
                         ),
                         SizedBox(height: 20)

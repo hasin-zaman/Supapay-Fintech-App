@@ -13,7 +13,7 @@ class Login extends StatelessWidget {
     try {
       final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
           .collection(''
-          'Users')
+          'users')
           .where('phone', isEqualTo: phone)
           .limit(1)
           .get();
@@ -65,29 +65,30 @@ class Login extends StatelessWidget {
                   final String? phone = prefs.getString('accNumber');
                   final String? passcode=await getPasscode(phone);
 
-                  if(passcode==code){
-                    code="";
-                    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-                  }
-                  else{
-                    print("Error occured. Login failed.");
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Forgot Pin Number?',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white70
-                    ),
-                  )
-              ),
-              SizedBox(height: 100)
-            ],
+                    if(passcode==code){
+                      code="";
+                      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                    }
+                    else{
+                      print("Error occured. Login failed.");
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forgot Pin Number?',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white70
+                      ),
+                    )
+                ),
+                SizedBox(height: 100)
+              ],
+            ),
           ),
         ),
       ),
