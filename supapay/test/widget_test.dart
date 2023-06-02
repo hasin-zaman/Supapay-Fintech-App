@@ -10,15 +10,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:supapay/features/welcome/views/welcome1.dart';
 
 void main() {
-  testWidgets('Test Welcome pages', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('Test Welcome Pages', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: Welcome1()));
-
-    // Verify that our counter starts at 0.
     expect(find.text('Welcome to Supapay!'), findsOneWidget);
-
-    // Tap the '+' icon and trigger a frame.
     await tester.tap(find.text('Next'));
-    await tester.pump();
+    await tester.pumpAndSettle();
+    expect(find.text("Connect All Wallets!"), findsOneWidget);
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    expect(find.text("Get Started!"), findsOneWidget);
+    expect(find.text('Sign up'), findsOneWidget);
+    expect(find.text('Sign in'), findsOneWidget);
   });
 }
