@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supapay/features/signup/components/signup_progress_indicator.dart';
-import 'package:supapay/features/signup/components/text_field.dart';
+import 'package:supapay/global/components/text_field.dart';
 import 'package:supapay/features/signup/models/user_model.dart';
 import 'package:supapay/features/signup/provider/user_data_provider.dart';
 import 'package:supapay/global/components/custom_button.dart';

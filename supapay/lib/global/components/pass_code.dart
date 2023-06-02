@@ -4,7 +4,9 @@ import 'package:supapay/features/forgot_pin/views/change_pin.dart';
 import 'package:supapay/features/login/views/login.dart';
 
 class PassCode extends StatelessWidget {
-  const PassCode({Key? key}) : super(key: key);
+  const PassCode({Key? key, this.validator}) : super(key: key);
+
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,8 @@ class PassCode extends StatelessWidget {
         pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
         obscureText: true,
         showCursor: true,
+        forceErrorState: true,
+        validator: validator,
         onChanged: (value) {
           Login.code=value;
           ChangePIN.code=value;

@@ -21,6 +21,7 @@ class OTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final key = GlobalKey<FormState>();
     FirebaseAuth auth = FirebaseAuth.instance;
     
     Future<void> saveUser(UserModel userData) async {
@@ -45,50 +46,55 @@ class OTP extends StatelessWidget {
             alignment: Alignment.center,
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/signup_otp.png", width: 150, height: 150),
-                  SizedBox(height: 20),
-                  ViewHeading(heading: "Phone Verification."),
-                  ViewSubHeading(heading: "Enter OTP sent to your phone number ${"+" + PhoneVerification.tempPhone}"),
-                  SizedBox(height: 30),
-                  PinCode(length: 6),
-                  SizedBox(height: 20),
-                  CustomButton(
-                    buttonText: "Verify Phone",
-                    buttonColor: const Color(0xFF1C6758),
-                    textColor: Color(0xFFEEF2E6),
-                    onTap: () async {
-                      try{
-                        PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: PhoneVerification.verificationId, smsCode: otp);
-                        await auth.signInWithCredential(credential);
-                        otp="";
-                        final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
-                        final userData = userDataProvider.userData!;
-                        await saveUser(userData);
-                        userDataProvider.clearUserData();
+              child: Form(
+                key: key,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/signup_otp.png", width: 150, height: 150),
+                    SizedBox(height: 20),
+                    ViewHeading(heading: "Phone Verification."),
+                    ViewSubHeading(heading: "Enter OTP sent to your phone number ${"+" + PhoneVerification.tempPhone}"),
+                    SizedBox(height: 30),
+                    PinCode(length: 6),
+                    SizedBox(height: 20),
+                    CustomButton(
+                      buttonText: "Verify Phone",
+                      buttonColor: const Color(0xFF1C6758),
+                      textColor: Color(0xFFEEF2E6),
+                      onTap: () async {
+                        if(key.currentState!.validate()){
+                          try{
+                            PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: PhoneVerification.verificationId, smsCode: otp);
+                            await auth.signInWithCredential(credential);
+                            otp="";
+                            final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
+                            final userData = userDataProvider.userData!;
+                            await saveUser(userData);
+                            userDataProvider.clearUserData();
 
-                        Navigator.pushNamedAndRemoveUntil(context, '/congratulations', (route) => false);
+                            Navigator.pushNamedAndRemoveUntil(context, '/congratulations', (route) => false);
+                          }
+                          catch(e){
+                            print(e);
+                          }
+                        }
                       }
-                      catch(e){
-                        print(e);
-                      }
-                    }
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Edit Phone Number?',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black87
-                        ),
-                      )
-                  ),
-                ],
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Edit Phone Number?',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black87
+                          ),
+                        )
+                    ),
+                  ],
+                ),
               ),
             ),
           )

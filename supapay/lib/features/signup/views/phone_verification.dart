@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supapay/features/signup/components/signup_progress_indicator.dart';
-import 'package:supapay/features/signup/components/text_field.dart';
+import 'package:supapay/global/components/text_field.dart';
 import 'package:supapay/global/components/custom_button.dart';
 import 'package:supapay/global/components/view_heading.dart';
 import 'package:supapay/global/components/view_sub_heading.dart';
@@ -66,11 +66,11 @@ class PhoneVerification extends StatelessWidget {
                             else if(!value.startsWith('92')){
                               return 'Phone numbers should start with country code eg. +92';
                             }
-                            if (value.length != 12) {
-                              return 'Phone numbers should make up to 12 digits.';
+                            if (value.length < 11) {
+                              return 'Invalid length.';
                             }
                             return null;
-                        },
+                          },
                       ),
                       SizedBox(height: 20),
                       CustomButton(

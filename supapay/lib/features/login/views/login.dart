@@ -9,6 +9,7 @@ class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
   static var code="";
+  static var pin="";
 
   Future<String?> getPasscode(String? phone) async {
     try {
@@ -34,6 +35,9 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final key = GlobalKey<FormState>();
+
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -48,47 +52,68 @@ class Login extends StatelessWidget {
           )
         ),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("assets/splash.png", width: 200),
-              SizedBox(height: 120),
-              PassCode(),
-              SizedBox(height: 50),
-              CustomButton(
-                buttonText: "Login",
-                buttonColor: const Color(0xFFEEF2E6),
-                textColor: const Color(0xFF1C6758),
-                onTap: () async {
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  final String? phone = prefs.getString('accNumber');
-                  final String? passcode=await getPasscode(phone);
-
-                    if(passcode==code && code!=""){
-                      code="";
-                      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          child: Form(
+            key: key,
+            child: Column(
+              children: [
+                Image.asset("assets/splash.png", width: 200),
+                SizedBox(height: 120),
+                PassCode(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter PIN.';
                     }
-                    else{
-                      print("Error occured. Login failed.");
+                    else if (value?.length!=4) {
+                      return 'Invalid length PIN.';
                     }
+                    else if(value!=pin){
+                      return 'Wrong PIN';
+                    }
+                    return null;
                   },
                 ),
-                SizedBox(height: 10),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgot-pin');
+                SizedBox(height: 50),
+                CustomButton(
+                  buttonText: "Login",
+                  buttonColor: const Color(0xFFEEF2E6),
+                  textColor: const Color(0xFF1C6758),
+                  onTap: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    final String? phone = prefs.getString('accNumber');
+                    final String? passcode=await getPasscode(phone);
+
+                    pin=passcode!;
+
+                      if(key.currentState!.validate()){
+                        if(passcode==code && code!=""){
+                          code="";
+                          pin="";
+                          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                        }
+                        else{
+                          print("Error occured. Login failed.");
+                        }
+                      }
                     },
-                    child: Text(
-                      'Forgot PIN?',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white70
-                      ),
-                    )
-                ),
-                SizedBox(height: 70)
-              ],
-            ),
+                  ),
+                  SizedBox(height: 10),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/forgot-pin');
+                      },
+                      child: Text(
+                        'Forgot PIN?',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white70
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 70)
+                ],
+              ),
+          ),
           ),
         ),
       );

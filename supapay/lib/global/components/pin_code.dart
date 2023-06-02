@@ -37,6 +37,16 @@ class PinCode extends StatelessWidget {
         length: length,
         pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
         showCursor: true,
+        forceErrorState: true,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter OTP you have received.';
+          }
+          else if (value?.length!=6) {
+            return 'Invalid length OTP. Should be 6 digits.';
+          }
+          return null;
+        },
         onChanged: (value) {
           OTP.otp=value;
           OTPLogin.otp=value;
