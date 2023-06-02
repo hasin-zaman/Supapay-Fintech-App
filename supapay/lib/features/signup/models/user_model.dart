@@ -1,6 +1,5 @@
 class UserModel {
   String name;
-  String gender;
   DateTime dateOfBirth;
   String email;
   String passcode;
@@ -17,7 +16,6 @@ class UserModel {
 
   UserModel({
     required this.name,
-    required this.gender,
     required this.dateOfBirth,
     required this.email,
     required this.passcode,
@@ -37,7 +35,6 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'gender': gender,
       'dateOfBirth': dateOfBirth,
       'email': email,
       'passcode': passcode,
@@ -58,7 +55,6 @@ class UserModel {
   static UserModel fromMap(Map<String, dynamic> map) {
     return UserModel(
       name: map['name'],
-      gender: map['gender'],
       dateOfBirth: map['dateOfBirth'].toDate(),
       email: map['email'],
       passcode: map['passcode'],

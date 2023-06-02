@@ -32,7 +32,7 @@ class Welcome2 extends StatelessWidget {
                 const Spacer(),
                 WelcomeCard(
                   title: "Connect All Wallets!",
-                  subTitle: "Lorem ipsum dolor sit amet, consectetur adipisci",
+                  subTitle: "For seamless transactions in just a few clicks!",
                   button: CustomButton(
                     buttonText: "Next",
                     buttonColor: const Color(0xFFEEF2E6),
