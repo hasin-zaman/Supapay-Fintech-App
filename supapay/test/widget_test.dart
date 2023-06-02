@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:supapay/features/welcome/views/welcome1.dart';
+import 'package:supapay/features/qr_code/views/qr_screen.dart';
 
 void main() {
   testWidgets('Test Welcome Pages', (WidgetTester tester) async {
@@ -15,11 +16,22 @@ void main() {
     expect(find.text('Welcome to Supapay!'), findsOneWidget);
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
+
     expect(find.text("Connect All Wallets!"), findsOneWidget);
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
+
     expect(find.text("Get Started!"), findsOneWidget);
     expect(find.text('Sign up'), findsOneWidget);
     expect(find.text('Sign in'), findsOneWidget);
+  });
+
+  testWidgets('QR Code', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: QRScreen()));
+    expect(find.byKey(const Key('qr-code')), findsOneWidget);
+    expect(find.text("Scan Code"), findsOneWidget);
+    await tester.tap(find.text("Scan Code"));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('qr-scanner')), findsOneWidget);
   });
 }

@@ -12,7 +12,7 @@ class QRScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final userData = ModalRoute.of(context)?.settings.arguments as String;
+    final userData = ModalRoute.of(context)?.settings.arguments as String?;
 
     var color = Theme.of(context).textTheme.bodyText1?.color;
     return DefaultTabController(
@@ -24,9 +24,10 @@ class QRScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: QrImage(
+                key: const Key('qr-code'),
                 foregroundColor: color,
                 padding: const EdgeInsets.all(40.0),
-                data: userData,
+                data: userData ?? "",
                 version: QrVersions.auto,
                 size: 300.0,
               ),
