@@ -115,7 +115,7 @@ void main() {
 
     test('Set user updates userData and notifies listeners', () {
       final userModel = UserModel(
-          name: 'John Doe', gender: "Male", dateOfBirth: DateTime(2000, 9, 7),
+          name: 'John Doe', dateOfBirth: DateTime(2000, 9, 7),
           email: "test@how.com",
           passcode: "1204",
           profileImageUrl: "",

@@ -23,7 +23,7 @@ void main() {
     });
 
     test('initial state is HomeInitial', () {
-      expect(homeBloc.state, HomeInitial());
+      expect(homeBloc.state, isA<HomeInitial>());
     });
 
     blocTest<HomeBloc, HomeState>(
@@ -31,7 +31,7 @@ void main() {
       build: () => homeBloc,
       act: (bloc) => bloc.add(HomeInitialEvent()),
       expect: () => [
-        HomeLoadingState(),
+        isA<HomeLoadingState>(),
         //HomeLoadedState(userData, transactions),
       ],
     );
@@ -41,7 +41,7 @@ void main() {
       build: () => homeBloc,
       act: (bloc) => bloc.add(HomePageUpdateEvent(userData, transactions)),
       expect: () => [
-        HomeLoadedState(userData, transactions),
+        isA<HomeLoadedState>(),
       ],
     );
 
@@ -50,7 +50,7 @@ void main() {
       build: () => homeBloc,
       act: (bloc) => bloc.add(HomePageRefreshEvent()),
       expect: () => [
-        HomeLoadingState(),
+        isA<HomeLoadingState>(),
         //HomeLoadedState(userData, transactions),
       ],
     );

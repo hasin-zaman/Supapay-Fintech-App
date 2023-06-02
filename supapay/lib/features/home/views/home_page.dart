@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: const CircleAvatar(child: Icon(Icons.person)),
+                    leading: const CircleAvatar(child: Icon(Icons.person), backgroundColor: const Color(0xFF1C6758)),
                     title: Text(userData.name!),
                     trailing: Image.network(
                         'https://static.vecteezy.com/system/resources/previews/022/100/815/non_2x/master-card-logo-transparent-free-png.png'),
