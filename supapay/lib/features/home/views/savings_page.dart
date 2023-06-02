@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/user_model.dart';
+
 class SavingsPage extends StatelessWidget {
-  const SavingsPage({super.key});
+  const SavingsPage({super.key, required this.userData});
+
+  final UserModel userData;
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +18,17 @@ class SavingsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Card(
-              child: Column(children: const [
-                ListTile(
+              child: Column(children: [
+                const ListTile(
                   title: Text("Your Income Limit"),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: LinearProgressIndicator(
-                    value: 0.4,
+                    value: userData.monthlyIncome! / 20000,
                   ),
                 ),
-                ListTile(
+                const ListTile(
                   minVerticalPadding: 0,
                   horizontalTitleGap: 0,
                   visualDensity: VisualDensity.compact,
@@ -33,35 +37,35 @@ class SavingsPage extends StatelessWidget {
               ]),
             ),
             Card(
-              child: Column(children: const [
-                ListTile(
+              child: Column(children: [
+                const ListTile(
                   title: Text("Your Spending Limit"),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: LinearProgressIndicator(
-                    value: 0.6,
+                    value: 10000 / userData.spendingLimit!,
                   ),
                 ),
                 ListTile(
                   minVerticalPadding: 0,
                   horizontalTitleGap: 0,
                   visualDensity: VisualDensity.compact,
-                  trailing: Text("25000"),
+                  trailing: Text('${userData.spendingLimit}'),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text("Set Spending Limit"),
                   trailing: Icon(Icons.arrow_forward_ios_rounded),
                 )
               ]),
             ),
             Card(
-              child: Column(children: const [
+              child: Column(children:  [
                 ListTile(
-                  title: Text("Monthly Income"),
-                  trailing: Text("32000"),
+                  title: const Text("Monthly Income"),
+                  trailing: Text(userData.monthlyIncome!.toString()),
                 ),
-                ListTile(
+                const ListTile(
                   title: Text("Set Income Streams"),
                   trailing: Icon(Icons.arrow_forward_ios_rounded),
                 )

@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supapay/features/home/models/user_model.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({
-    Key? key,
-  }) : super(key: key);
+  const ProfileScreen({Key? key, required this.userData}) : super(key: key);
+
+  final UserModel userData;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +17,9 @@ class ProfileScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Card(
-            child: Column(children: const [
-              ListTile(),
-              CircleAvatar(
+            child: Column(children: [
+              const ListTile(),
+              const CircleAvatar(
                 radius: 30,
                 child: Icon(
                   Icons.person,
@@ -24,20 +27,20 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 16.0),
+                padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
-                  "UserName",
-                  style: TextStyle(fontSize: 20),
+                  "${userData.name}",
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
-              ListTile(),
+              const ListTile(),
               ListTile(
-                title: Text("Account Number"),
-                trailing: Text("Number"),
+                title: const Text("Account Number"),
+                trailing: Text('${userData.accountNumber}'),
               ),
               ListTile(
-                title: Text("Email"),
-                trailing: Text("Email"),
+                title: const Text("Email"),
+                trailing: Text("${userData.email}"),
               ),
             ]),
           ),
@@ -58,11 +61,19 @@ class ProfileScreen extends StatelessWidget {
               },
             ),
           ),
-          const Card(
+          Card(
             child: ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Log Out"),
-              trailing: Icon(Icons.arrow_forward_ios_rounded),
+              onTap: () async {
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/welcome', (Route<dynamic> route) => false);
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                prefs.clear();
+              },
+              leading: const Icon(Icons.logout),
+              title: const Text("Log Out"),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded),
             ),
           )
         ],

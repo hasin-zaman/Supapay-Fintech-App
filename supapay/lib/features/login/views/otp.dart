@@ -55,7 +55,7 @@ class OTPLogin extends StatelessWidget {
                               otp="";
 
                               final SharedPreferences prefs = await SharedPreferences.getInstance();
-                              await prefs.setString('phone', PhoneVerificationLogin.phone);
+                              await prefs.setString('accNumber', PhoneVerificationLogin.phone);
                               PhoneVerificationLogin.phone="";
 
                               Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);

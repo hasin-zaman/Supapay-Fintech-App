@@ -75,6 +75,14 @@ class PhoneVerification extends StatelessWidget {
                                     passcode: userData.passcode,
                                     profileImageUrl: userData.profileImageUrl,
                                     phone: phone.text.toString(),
+                                    accountNumber: phone.text.toString(),
+                                    balance: 0,
+                                    cardNumber: '5238333370318899',
+                                    cvvCode: '900',
+                                    expiryDate: '06/2031',
+                                    iban: 'PK 12 SUPA 000001 ${phone.text.substring(0,9)}',
+                                    monthlyIncome: 15000,
+                                    spendingLimit: 50000
                                   )
                               );
                               Navigator.pushNamed(context, '/otp');
