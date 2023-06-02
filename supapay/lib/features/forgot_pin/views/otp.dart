@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/features/forgot_pin/views/phone_verification.dart';
-import 'package:supapay/features/login/views/phone_verification.dart';
 import 'package:supapay/global/components/custom_button.dart';
 import 'package:supapay/global/components/pin_code.dart';
 import 'package:supapay/global/components/view_heading.dart';
@@ -39,7 +38,7 @@ class OTPForgotPIN extends StatelessWidget {
                       Image.asset("assets/signup_otp.png", width: 150, height: 150),
                       SizedBox(height: 20),
                       ViewHeading(heading: "Phone Verification."),
-                      ViewSubHeading(heading: "Enter OTP sent to your phone number!"),
+                      ViewSubHeading(heading: "Enter OTP sent to your phone number ${"+" + PhoneVerificationForgotPIN.tempPhone}"),
                       SizedBox(height: 30),
                       PinCode(length: 6),
                       SizedBox(height: 20),
@@ -56,7 +55,7 @@ class OTPForgotPIN extends StatelessWidget {
                               otp="";
 
                               final SharedPreferences prefs = await SharedPreferences.getInstance();
-                              await prefs.setString('phone', PhoneVerificationForgotPIN.phone);
+                              await prefs.setString('phone', PhoneVerificationForgotPIN.tempPhone);
 
                               Navigator.pushNamedAndRemoveUntil(context, '/forgot-pin/change-pin', (route) => false);
                             }

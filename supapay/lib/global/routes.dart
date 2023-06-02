@@ -3,6 +3,7 @@ import 'package:supapay/features/forgot_pin/views/change_pin.dart';
 import 'package:supapay/features/forgot_pin/views/forgot_pin.dart';
 import 'package:supapay/features/forgot_pin/views/otp.dart';
 import 'package:supapay/features/forgot_pin/views/phone_verification.dart';
+import 'package:supapay/features/forgot_pin/views/success.dart';
 import 'package:supapay/features/login/views/login.dart';
 import 'package:supapay/features/login/views/otp.dart';
 import 'package:supapay/features/login/views/phone_verification.dart';
@@ -33,6 +34,7 @@ Map<String, WidgetBuilder> get routes {
     '/forgot-pin/phone-verification': (context) => const PhoneVerificationForgotPIN(),
     '/forgot-pin/otp': (context) => const OTPForgotPIN(),
     '/forgot-pin/change-pin': (context) => const ChangePIN(),
+    '/forgot-pin/success': (context) => const SuccessChangePIN(),
     '/home': (context) => Home(),
     '/home/qr': (context) => const QRScreen(),
     '/home/atms': (context) => const ATMInfo(),

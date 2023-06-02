@@ -39,6 +39,7 @@ class OTP extends StatelessWidget {
             ),
             backgroundColor: const Color(0xFFEEF2E6),
             scrolledUnderElevation: 0,
+            automaticallyImplyLeading: false,
           ),
           body: Container(
             alignment: Alignment.center,
@@ -50,7 +51,7 @@ class OTP extends StatelessWidget {
                   Image.asset("assets/signup_otp.png", width: 150, height: 150),
                   SizedBox(height: 20),
                   ViewHeading(heading: "Phone Verification."),
-                  ViewSubHeading(heading: "Enter OTP sent to your phone number!"),
+                  ViewSubHeading(heading: "Enter OTP sent to your phone number ${"+" + PhoneVerification.tempPhone}"),
                   SizedBox(height: 30),
                   PinCode(length: 6),
                   SizedBox(height: 20),

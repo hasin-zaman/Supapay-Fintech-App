@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:supapay/features/signup/views/signup.dart';
 import 'package:supapay/global/components/custom_button.dart';
 
-import '../components/welcome_card.dart';
 
 class Welcome3 extends StatelessWidget {
   const Welcome3({Key? key}) : super(key: key);
@@ -14,6 +12,13 @@ class Welcome3 extends StatelessWidget {
           backgroundColor: const Color(0xFFEEF2E6),
           appBar: AppBar(
             backgroundColor: const Color(0xFFEEF2E6),
+            scrolledUnderElevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_new),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
           ),
           body: Center(
             child: Column(
@@ -56,8 +61,8 @@ class Welcome3 extends StatelessWidget {
                           buttonColor: const Color(0xFF1C6758),
                           textColor: Color(0xFFEEF2E6),
                           onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/signup', (route) => false);
+                            Navigator.pushNamed(
+                                context, '/signup');
                           },
                         ),
                         SizedBox(height: 10),
@@ -66,8 +71,8 @@ class Welcome3 extends StatelessWidget {
                           buttonColor: const Color(0xFFEEF2E6),
                           textColor: const Color(0xFF1C6758),
                           onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/login/phone-verification', (route) => false);
+                            Navigator.pushNamed(
+                                context, '/login/phone-verification');
                           },
                         ),
                         SizedBox(height: 20)

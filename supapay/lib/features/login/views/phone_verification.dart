@@ -9,7 +9,7 @@ class PhoneVerificationLogin extends StatelessWidget {
   const PhoneVerificationLogin({Key? key}) : super(key: key);
 
   static String verificationId="";
-  static String phone="";
+  static String tempPhone="";
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,16 @@ class PhoneVerificationLogin extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: const Color(0xFF1C6758),
+              scrolledUnderElevation: 0,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
             body: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -54,7 +64,7 @@ class PhoneVerificationLogin extends StatelessWidget {
                           buttonColor: const Color(0xFF1C6758),
                           textColor: Color(0xFFEEF2E6),
                           onTap: () async {
-                            PhoneVerificationLogin.phone=phone.text;
+                            tempPhone=phone.text;
                             await FirebaseAuth.instance.verifyPhoneNumber(
                               phoneNumber: '${"+" + phone.text}',
                               verificationCompleted: (PhoneAuthCredential credential) {},

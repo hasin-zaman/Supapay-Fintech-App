@@ -21,12 +21,18 @@ class Signup extends StatelessWidget {
         child: Scaffold(
       backgroundColor: const Color(0xFFEEF2E6),
       appBar: AppBar(
+        backgroundColor: const Color(0xFFEEF2E6),
+        scrolledUnderElevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         flexibleSpace: Center(
           child: SignupProgressIndicator(
               value1: 1, value2: 0, value3: 0, value4: 0),
         ),
-        backgroundColor: const Color(0xFFEEF2E6),
-        scrolledUnderElevation: 0,
       ),
       body: Container(
         alignment: Alignment.center,

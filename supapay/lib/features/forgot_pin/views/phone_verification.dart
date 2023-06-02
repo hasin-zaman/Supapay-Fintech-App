@@ -9,7 +9,7 @@ class PhoneVerificationForgotPIN extends StatelessWidget {
   const PhoneVerificationForgotPIN({Key? key}) : super(key: key);
 
   static String verificationId="";
-  static String phone="";
+  static String tempPhone="";
 
   @override
   Widget build(BuildContext context) {
@@ -64,21 +64,30 @@ class PhoneVerificationForgotPIN extends StatelessWidget {
                           buttonColor: const Color(0xFF1C6758),
                           textColor: Color(0xFFEEF2E6),
                           onTap: () async {
-                            PhoneVerificationForgotPIN.phone=phone.text;
-                            await FirebaseAuth.instance.verifyPhoneNumber(
-                              phoneNumber: '${"+" + phone.text}',
-                              verificationCompleted: (PhoneAuthCredential credential) {},
-                              verificationFailed: (FirebaseAuthException e) {
-                                if (e.code == 'invalid-phone-number') {
-                                  print('Invalid phone number.');
-                                }
-                              },
-                              codeSent: (String verificationId, int? resendToken) {
-                                PhoneVerificationForgotPIN.verificationId=verificationId;
-                                Navigator.pushNamed(context, '/forgot-pin/otp');
-                              },
-                              codeAutoRetrievalTimeout: (String verificationId) {},
-                            );
+                            tempPhone=phone.text;
+
+                            FirebaseAuth auth = FirebaseAuth.instance;
+                            final currentUser = auth.currentUser;
+
+                            if(currentUser?.phoneNumber=='${"+" + phone.text}'){
+                              await auth.verifyPhoneNumber(
+                                phoneNumber: '${"+" + phone.text}',
+                                verificationCompleted: (PhoneAuthCredential credential) {},
+                                verificationFailed: (FirebaseAuthException e) {
+                                  if (e.code == 'invalid-phone-number') {
+                                    print('Invalid phone number.');
+                                  }
+                                },
+                                codeSent: (String verificationId, int? resendToken) {
+                                  PhoneVerificationForgotPIN.verificationId=verificationId;
+                                  Navigator.pushNamed(context, '/forgot-pin/otp');
+                                },
+                                codeAutoRetrievalTimeout: (String verificationId) {},
+                              );
+                            }
+                            else{
+                              print("Invalid Number. Enter number you are signed in with.");
+                            }
                           }
                       ),
                     ],

@@ -51,7 +51,7 @@ class Login extends StatelessWidget {
           child: Column(
             children: [
               Image.asset("assets/splash.png", width: 200),
-              SizedBox(height: 100),
+              SizedBox(height: 120),
               PassCode(),
               SizedBox(height: 50),
               CustomButton(
@@ -86,7 +86,7 @@ class Login extends StatelessWidget {
                       ),
                     )
                 ),
-                SizedBox(height: 100)
+                SizedBox(height: 70)
               ],
             ),
           ),

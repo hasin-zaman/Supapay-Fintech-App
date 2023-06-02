@@ -14,6 +14,13 @@ class Welcome2 extends StatelessWidget {
           backgroundColor: const Color(0xFFEEF2E6),
           appBar: AppBar(
             backgroundColor: const Color(0xFFEEF2E6),
+            scrolledUnderElevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_new),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
           ),
           body: Center(
             child: Column(

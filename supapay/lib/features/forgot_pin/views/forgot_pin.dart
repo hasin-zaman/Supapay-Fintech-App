@@ -1,12 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supapay/features/login/views/phone_verification.dart';
-import 'package:supapay/global/components/custom_button.dart';
 import 'package:supapay/global/components/custom_button_large.dart';
-import 'package:supapay/global/components/pin_code.dart';
-import 'package:supapay/global/components/view_heading.dart';
-import 'package:supapay/global/components/view_sub_heading.dart';
 
 class ForgotPIN extends StatelessWidget {
   const ForgotPIN({Key? key}) : super(key: key);
@@ -65,8 +60,13 @@ class ForgotPIN extends StatelessWidget {
                       buttonText: "Logout ->",
                       buttonColor: const Color(0xFF1C6758),
                       textColor: Color(0xFFEEF2E6),
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(context, '/welcome', (route) => false);
+                      onTap: () async {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/welcome', (Route<dynamic> route) => false);
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.clear();
                       },
                     ),
                     SizedBox(height: 50),
