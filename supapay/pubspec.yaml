@@ -49,6 +49,7 @@ dependencies:
   google_maps_flutter: ^2.2.8
   location: ^4.4.0
   flutter_animate: ^4.1.1+1
+  intl: ^0.18.1
   # http: ^0.13.5
 
 dev_dependencies:

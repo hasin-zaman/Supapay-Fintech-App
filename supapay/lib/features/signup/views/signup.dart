@@ -6,6 +6,7 @@ import 'package:supapay/features/signup/models/user_model.dart';
 import 'package:supapay/features/signup/provider/user_data_provider.dart';
 import 'package:supapay/global/components/custom_button.dart';
 import 'package:supapay/global/components/view_heading.dart';
+import 'package:intl/intl.dart';
 
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
@@ -16,6 +17,28 @@ class Signup extends StatelessWidget {
     TextEditingController dateOfBirth = TextEditingController(text: "");
     TextEditingController email = TextEditingController(text: "");
     TextEditingController passcode = TextEditingController(text: "");
+
+    Future<void> pickDate(BuildContext context) async {
+      final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1923),
+        lastDate: DateTime.now(),
+        builder: (context, child) {
+          return Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: ColorScheme.light(
+                  primary: Color(0xFF1C6758),
+                ),
+              ),
+            child: child!
+          );
+        }
+      );
+      if (picked != null) {
+        dateOfBirth.text = DateFormat('dd/MM/yyyy').format(picked);
+      }
+    }
 
     return SafeArea(
         child: Scaffold(
@@ -57,13 +80,20 @@ class Signup extends StatelessWidget {
                   controller: name,
                   icon: Icon(Icons.account_box)),
               SizedBox(height: 30),
-              CustomTextField(
-                  textInputType: TextInputType.datetime,
-                  labelText: "Date of Birth",
-                  hintText: "dd/mm/year",
-                  obscureText: false,
-                  controller: dateOfBirth,
-                  icon: Icon(Icons.calendar_month)),
+              GestureDetector(
+                onTap: () {
+                  pickDate(context);
+                },
+                child: AbsorbPointer(
+                  child: CustomTextField(
+                      textInputType: TextInputType.datetime,
+                      labelText: "Date of Birth",
+                      hintText: "dd/MM/year",
+                      obscureText: false,
+                      controller: dateOfBirth,
+                      icon: Icon(Icons.calendar_month)),
+                ),
+              ),
               SizedBox(height: 30),
               CustomTextField(
                   textInputType: TextInputType.emailAddress,
