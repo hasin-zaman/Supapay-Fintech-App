@@ -9,12 +9,10 @@ import 'global/settings.dart';
 void main() async {
   await appInit();
   bool isSignedUp=await userSignupState();
-  print("Login State: \n");
-  print(isSignedUp);
 
   runApp(ChangeNotifierProvider(
       create: (_) => UserDataProvider(),
-      child: MyApp(initialRoute: isSignedUp ? '/welcome' : '/welcome')));
+      child: MyApp(initialRoute: isSignedUp ? '/login' : '/welcome')));
 }
 
 class MyApp extends StatelessWidget {

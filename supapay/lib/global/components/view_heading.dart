@@ -14,7 +14,6 @@ class ViewHeading extends StatelessWidget {
           fontSize: 30,
           fontWeight: FontWeight.w700
         ),
-
     );
   }
 }

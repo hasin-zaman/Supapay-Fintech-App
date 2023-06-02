@@ -5,8 +5,8 @@ import 'package:supapay/global/components/custom_button.dart';
 import 'package:supapay/global/components/view_heading.dart';
 import 'package:supapay/global/components/view_sub_heading.dart';
 
-class PhoneVerificationLogin extends StatelessWidget {
-  const PhoneVerificationLogin({Key? key}) : super(key: key);
+class PhoneVerificationForgotPIN extends StatelessWidget {
+  const PhoneVerificationForgotPIN({Key? key}) : super(key: key);
 
   static String verificationId="";
   static String phone="";
@@ -18,6 +18,16 @@ class PhoneVerificationLogin extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: const Color(0xFF1C6758),
+              scrolledUnderElevation: 0,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
             body: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -39,7 +49,7 @@ class PhoneVerificationLogin extends StatelessWidget {
                       Image.asset("assets/signup_otp.png", width: 150, height: 150),
                       SizedBox(height: 20),
                       ViewHeading(heading: "Phone Verification."),
-                      ViewSubHeading(heading: "Enter your phone number with country code. "),
+                      ViewSubHeading(heading: "Enter your phone number with country code to continue."),
                       SizedBox(height: 30),
                       CustomTextField(
                           textInputType: TextInputType.phone,
@@ -54,7 +64,7 @@ class PhoneVerificationLogin extends StatelessWidget {
                           buttonColor: const Color(0xFF1C6758),
                           textColor: Color(0xFFEEF2E6),
                           onTap: () async {
-                            PhoneVerificationLogin.phone=phone.text;
+                            PhoneVerificationForgotPIN.phone=phone.text;
                             await FirebaseAuth.instance.verifyPhoneNumber(
                               phoneNumber: '${"+" + phone.text}',
                               verificationCompleted: (PhoneAuthCredential credential) {},
@@ -64,8 +74,8 @@ class PhoneVerificationLogin extends StatelessWidget {
                                 }
                               },
                               codeSent: (String verificationId, int? resendToken) {
-                                PhoneVerificationLogin.verificationId=verificationId;
-                                Navigator.pushNamed(context, '/login/otp');
+                                PhoneVerificationForgotPIN.verificationId=verificationId;
+                                Navigator.pushNamed(context, '/forgot-pin/otp');
                               },
                               codeAutoRetrievalTimeout: (String verificationId) {},
                             );

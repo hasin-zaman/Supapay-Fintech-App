@@ -2,15 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supapay/global/components/custom_button.dart';
+import 'package:supapay/global/components/view_heading.dart';
 
 import '../../../global/components/pass_code.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class ChangePIN extends StatelessWidget {
+  const ChangePIN({Key? key}) : super(key: key);
 
   static var code="";
 
-  Future<String?> getPasscode(String? phone) async {
+  Future<void> updatePIN(String? phone, String? code) async {
     try {
       final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
           .collection(''
@@ -20,15 +21,20 @@ class Login extends StatelessWidget {
           .get();
 
       if (snapshot.docs.isNotEmpty) {
-        final DocumentSnapshot<Map<String, dynamic>> doc = snapshot.docs.first;
-        final String? passcode = doc.data()!['passcode'];
-        return passcode;
+        DocumentSnapshot<Map<String, dynamic>> document = snapshot.docs.first;
+        String documentId = document.id;
+
+        // Update the specific property
+        await FirebaseFirestore.instance.collection('users').doc(documentId).update({
+          'passcode': code,
+        });
+
+        print('Property updated successfully!');
       } else {
-        return null;
+        print("Document not found for the provided phone number.");
       }
     } catch (e) {
       print(e);
-      return null;
     }
   }
 
@@ -39,53 +45,38 @@ class Login extends StatelessWidget {
         body: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Color(0xFF1C6758),
-                  Color(0xFF26806E),
-                  Color(0xFF279C84),
-                ],
-              begin: Alignment.topRight
-            )
+              gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF1C6758),
+                    Color(0xFF26806E),
+                    Color(0xFF279C84),
+                  ],
+                  begin: Alignment.topRight
+              )
           ),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset("assets/splash.png", width: 200),
+                ViewHeading(heading: "Change PIN Code."),
                 SizedBox(height: 100),
                 PassCode(),
                 SizedBox(height: 50),
                 CustomButton(
-                  buttonText: "Login",
+                  buttonText: "Change PIN",
                   buttonColor: const Color(0xFFEEF2E6),
                   textColor: const Color(0xFF1C6758),
                   onTap: () async {
                     SharedPreferences prefs = await SharedPreferences.getInstance();
                     final String? phone = prefs.getString('phone');
-                    final String? passcode=await getPasscode(phone);
 
-                    if(passcode==code && code!=""){
-                      code="";
-                      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+                    if(code!="" && code.length==4){
+                      updatePIN(phone, code);
+                      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
                     }
                     else{
-                      print("Error occured. Login failed.");
+                      print("Error occured. PIN could not be changed.");
                     }
                   },
-                ),
-                SizedBox(height: 10),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgot-pin');
-                    },
-                    child: Text(
-                      'Forgot PIN?',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white70
-                      ),
-                    )
                 ),
                 SizedBox(height: 100)
               ],

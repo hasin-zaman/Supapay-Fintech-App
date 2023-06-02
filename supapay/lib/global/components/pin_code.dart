@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:supapay/features/forgot_pin/views/otp.dart';
 import 'package:supapay/features/login/views/otp.dart';
 import 'package:supapay/features/signup/views/otp.dart';
 
@@ -39,6 +40,7 @@ class PinCode extends StatelessWidget {
         onChanged: (value) {
           OTP.otp=value;
           OTPLogin.otp=value;
+          OTPForgotPIN.otp=value;
         }
     );
   }

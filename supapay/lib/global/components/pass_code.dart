@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:supapay/features/forgot_pin/views/change_pin.dart';
 import 'package:supapay/features/login/views/login.dart';
 
 class PassCode extends StatelessWidget {
@@ -35,7 +36,7 @@ class PassCode extends StatelessWidget {
         showCursor: true,
         onChanged: (value) {
           Login.code=value;
-          print("Login code: ${Login.code}");
+          ChangePIN.code=value;
         }
     );
   }
