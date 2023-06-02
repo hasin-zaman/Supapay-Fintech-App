@@ -33,7 +33,7 @@ class PassCode extends StatelessWidget {
     );
 
     return Pinput(
-        pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+        pinputAutovalidateMode: PinputAutovalidateMode.disabled,
         obscureText: true,
         showCursor: true,
         forceErrorState: true,

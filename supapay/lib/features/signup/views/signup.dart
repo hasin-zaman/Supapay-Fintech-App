@@ -166,7 +166,6 @@ class _SignupState extends State<Signup> {
                       final userData = UserModel(
                           name: name.text,
                           dateOfBirth: DateFormat('dd/MM/yyyy').parse(dateOfBirth.text),
-                          gender: "Male",
                           email: email.text,
                           passcode: passcode.text,
                           profileImageUrl: "",

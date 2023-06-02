@@ -96,7 +96,6 @@ class PhoneVerification extends StatelessWidget {
                                       UserModel(
                                           name: userData.name,
                                           dateOfBirth: userData.dateOfBirth,
-                                          gender: userData.gender,
                                           email: userData.email,
                                           passcode: userData.passcode,
                                           profileImageUrl: userData.profileImageUrl,

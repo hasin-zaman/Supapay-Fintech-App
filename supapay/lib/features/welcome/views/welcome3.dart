@@ -48,7 +48,7 @@ class Welcome3 extends StatelessWidget {
                         ),
                         SizedBox(height: 3),
                         Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipisci",
+                          "Sign up as a new user or sign in if already registered!",
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500,
