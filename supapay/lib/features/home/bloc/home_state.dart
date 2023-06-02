@@ -9,12 +9,15 @@ class HomeInitial extends HomeState {}
 
 class HomeLoadingState extends HomeState {}
 
-class HomeLoadedState extends HomeState {}
+class HomeLoadedState extends HomeState {
+  final UserModel userData;
+  final List<TransactionModel> transactions;
+
+  HomeLoadedState(this.userData, this.transactions);
+}
 
 class HomeErrorState extends HomeState {
   final String e;
 
   HomeErrorState(this.e);
 }
-
-

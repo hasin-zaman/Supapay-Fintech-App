@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supapay/features/home/bloc/home_bloc.dart';
 import 'package:supapay/features/home/components/bottom_app_bar.dart';
+import 'package:supapay/features/home/models/transaction_model.dart';
 import 'package:supapay/features/home/views/card_page.dart';
 import 'package:supapay/features/home/views/profile_page.dart';
 import 'package:supapay/features/home/views/savings_page.dart';
 import '../components/qr_button.dart';
+import '../models/user_model.dart';
 import 'home_page.dart';
 
 // ignore: must_be_immutable
@@ -13,12 +15,14 @@ class Home extends StatelessWidget {
   Home({super.key});
 
   final HomeBloc homeBloc = HomeBloc();
-  final transactions = [0, 1, 2, 3, 4, 5];
+  late List<TransactionModel> transactions;
+  late UserModel userData;
+  String accNumber = '';
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     _selectedIndex = index;
-    homeBloc.add(HomePageUpdateEvent());
+    homeBloc.add(HomePageUpdateEvent(userData, transactions));
   }
 
   Future _onRefreshHome() {
@@ -38,7 +42,7 @@ class Home extends StatelessWidget {
           return Scaffold(
             appBar: null,
             bottomNavigationBar: bottomAppBar(_selectedIndex, _onItemTapped),
-            floatingActionButton: const QRCodeButton(),
+            floatingActionButton: QRCodeButton(userData: accNumber,),
             body: StreamBuilder(
               builder: (context, snapshot) {
                 if (state is HomeInitial) {
@@ -51,12 +55,17 @@ class Home extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is HomeLoadedState) {
+                  userData = state.userData;
+                  transactions = state.transactions;
+                  accNumber = state.userData.accountNumber!;
                   return [
                     HomeScreen(
-                        transactions: transactions, onRefresh: _onRefreshHome),
-                    const CardScreen(),
-                    const SavingsPage(),
-                    const ProfileScreen()
+                        transactions: transactions,
+                        onRefresh: _onRefreshHome,
+                        userData: userData),
+                    CardScreen(userData: userData),
+                    SavingsPage(userData: userData),
+                    ProfileScreen(userData: userData)
                   ][_selectedIndex];
                 } else {
                   final String s = (state as HomeErrorState).e;

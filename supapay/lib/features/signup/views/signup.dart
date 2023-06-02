@@ -80,16 +80,24 @@ class Signup extends StatelessWidget {
                 buttonColor: const Color(0xFF1C6758),
                 textColor: Color(0xFFEEF2E6),
                 onTap: () {
-                  final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
+                  final userDataProvider =
+                      Provider.of<UserDataProvider>(context, listen: false);
                   final userData = UserModel(
-                    name: name.text,
-                    dateOfBirth: DateTime.parse(dateOfBirth.text),
-                    gender: "Male",
-                    email: email.text,
-                    passcode: passcode.text,
-                    profileImageUrl: "",
-                    phone: '',
-                  );
+                      name: name.text,
+                      dateOfBirth: DateTime.parse(dateOfBirth.text),
+                      gender: "Male",
+                      email: email.text,
+                      passcode: passcode.text,
+                      profileImageUrl: "",
+                      phone: '',
+                      accountNumber: '',
+                      balance: 0,
+                      cardNumber: '',
+                      cvvCode: '',
+                      expiryDate: '',
+                      iban: '',
+                      monthlyIncome: 0,
+                      spendingLimit: 0);
                   userDataProvider.setUser(userData);
                   Navigator.pushNamed(context, '/phone-verification');
                 },

@@ -22,10 +22,12 @@ class OTP extends StatelessWidget {
   Widget build(BuildContext context) {
 
     FirebaseAuth auth = FirebaseAuth.instance;
-
+    
     Future<void> saveUser(UserModel userData) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       final usersCollection = FirebaseFirestore.instance.collection('Users');
-      await usersCollection.add(userData.toMap());
+      await usersCollection.doc(userData.phone).set(userData.toMap());
+      await prefs.setString('accNumber', userData.phone);
     }
 
     return SafeArea(
@@ -63,10 +65,6 @@ class OTP extends StatelessWidget {
                         otp="";
                         final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
                         final userData = userDataProvider.userData!;
-
-                        final SharedPreferences prefs = await SharedPreferences.getInstance();
-                        await prefs.setString('phone', userData.phone);
-
                         await saveUser(userData);
                         userDataProvider.clearUserData();
 

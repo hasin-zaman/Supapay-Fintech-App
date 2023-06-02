@@ -20,6 +20,33 @@ class SendFundsPage extends StatelessWidget {
         bloc: sendFundsBloc,
         listener: (context, state) {},
         builder: (context, state) {
+          if (state is SendFundsLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is SendFundsErrorState) {
+            return const Center(
+              child: Text("Something Went Wromg"),
+            );
+          } else if (state is SendFundsSuccessState) {
+            String response = state.response;
+            if (response == "OK") {
+              return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Transaction Successful"),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Go Back"))
+                ],
+              ));
+            } else {
+              return Center(child: Text(response));
+            }
+          }
           return SingleChildScrollView(
             child: Column(children: [
               Row(
@@ -99,6 +126,8 @@ class SendFundsPage extends StatelessWidget {
                             if (!_formKey.currentState!.validate()) {
                               return;
                             }
+                            sendFundsBloc.add(SendFundsProcessingEvent(
+                                int.parse(amount.text), accountNumber.text));
                           },
                         ),
                       )
