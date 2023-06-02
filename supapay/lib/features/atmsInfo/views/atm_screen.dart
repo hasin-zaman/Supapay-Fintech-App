@@ -48,6 +48,7 @@ class _ATMInfoState extends State<ATMInfo> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: const Key('maps'),
           appBar: AppBar(
             centerTitle: true,
             title: const Text("Show ATMs"),
@@ -71,6 +72,7 @@ class _ATMInfoState extends State<ATMInfo> {
                   markers: _markers,
                 )
               : const Center(
+                key: Key("loader"),
                   child: CircularProgressIndicator(),
                 )),
     );

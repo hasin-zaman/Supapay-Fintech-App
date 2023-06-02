@@ -8,6 +8,7 @@ class ScanQrPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MobileScanner(
+      key: const Key("qr-scanner"),
       fit: BoxFit.scaleDown,
       // fit: BoxFit.contain,
       controller: MobileScannerController(

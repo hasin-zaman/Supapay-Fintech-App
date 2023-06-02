@@ -6,6 +6,8 @@ class TransactionModel {
   String? date;
   int? amount;
 
+  TransactionModel(
+      {this.id, this.to, this.accNumber, this.from, this.date, this.amount});
 
   TransactionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
