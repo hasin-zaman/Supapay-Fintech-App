@@ -38,8 +38,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<FutureOr<void>> homePageRefreshEvent(
       HomePageRefreshEvent event, Emitter<HomeState> emit) async {
     emit(HomeLoadingState());
-    final userData = await fetchUser();
-    final transactions = await fetchTransactions();
-    emit(HomeLoadedState(userData, transactions));
+    try {
+      final userData = await fetchUser();
+      final transactions = await fetchTransactions();
+      emit(HomeLoadedState(userData, transactions));
+    } catch (e) {
+      HomeErrorState(e.toString());
+    }
   }
 }

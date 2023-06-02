@@ -20,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
             child: Column(children: [
               const ListTile(),
               const CircleAvatar(
+              backgroundColor: const Color(0xFF1C6758),
                 radius: 30,
                 child: Icon(
                   Icons.person,
