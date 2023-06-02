@@ -10,7 +10,14 @@ class UserModel {
   int? monthlyIncome;
   int? balance;
 
-  UserModel({this.name, this.email, this.accountNumber});
+  UserModel(
+      {this.name,
+      this.email,
+      this.accountNumber,
+      this.cardNumber,
+      this.expiryDate,
+      this.balance,
+      this.cvvCode});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];

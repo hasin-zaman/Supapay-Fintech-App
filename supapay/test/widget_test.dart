@@ -6,10 +6,16 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pinput/pinput.dart';
 import 'package:supapay/features/atmsInfo/views/atm_screen.dart';
 import 'package:supapay/features/customer_support/views/support_page.dart';
+import 'package:supapay/features/home/models/transaction_model.dart';
+import 'package:supapay/features/home/models/user_model.dart';
+import 'package:supapay/features/home/views/card_page.dart';
+import 'package:supapay/features/home/views/home_page.dart';
+import 'package:supapay/features/home/views/profile_page.dart';
 import 'package:supapay/features/login/views/otp.dart';
 import 'package:supapay/features/signup/components/progress_indicator.dart';
 import 'package:supapay/features/signup/components/text_field.dart';
@@ -309,7 +315,7 @@ void main() {
 
     // Verify that the "FAQs" ListTile is displayed
     expect(find.widgetWithText(ListTile, 'FAQs'), findsOneWidget);
-    
+
     // Verify that the "Send us a message" ListTile is displayed
     expect(find.widgetWithText(ListTile, 'Send us a message'), findsOneWidget);
 
@@ -317,4 +323,97 @@ void main() {
     expect(find.byIcon(Icons.support_agent_rounded), findsOneWidget);
     expect(find.byIcon(Icons.arrow_forward_ios_rounded), findsNWidgets(2));
   });
+
+  group('CardScreen', () {
+    UserModel testUserModel;
+
+    testUserModel = UserModel(
+      cardNumber: '1234567890123456',
+      expiryDate: '12/24',
+      name: 'John Doe',
+      cvvCode: '123',
+    );
+
+    testWidgets('Renders correctly', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(body: CardScreen(userData: testUserModel)),
+      ));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SingleChildScrollView), findsOneWidget);
+      expect(find.byType(CreditCardWidget), findsOneWidget);
+      expect(find.byType(ListTile), findsOneWidget);
+      expect(find.text('Show ATMs'), findsOneWidget);
+    });
+
+    testWidgets('Navigates to ATMs screen when tapped',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(body: CardScreen(userData: testUserModel)),
+        routes: {
+          '/home/atms': (context) => Scaffold(
+                appBar: AppBar(title: const Text('ATMs')),
+                body: const Text('ATMs Screen'),
+              ),
+        },
+      ));
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Show ATMs'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('ATMs Screen'), findsOneWidget);
+    });
+  });
+
+  group('ProfileScreen', () {
+    UserModel testUserModel;
+
+    testUserModel = UserModel(
+      name: 'John Doe',
+      accountNumber: '1234567890',
+      email: 'johndoe@example.com',
+    );
+
+    testWidgets('Renders correctly', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(body: ProfileScreen(userData: testUserModel)),
+      ));
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SingleChildScrollView), findsOneWidget);
+      expect(find.byType(ListTile), findsWidgets);
+      expect(find.byType(CircleAvatar), findsOneWidget);
+      expect(find.text('John Doe'), findsOneWidget);
+      expect(find.text('Account Number'), findsOneWidget);
+      expect(find.text('1234567890'), findsOneWidget);
+      expect(find.text('Email'), findsOneWidget);
+      expect(find.text('johndoe@example.com'), findsOneWidget);
+      expect(find.text('Settings'), findsOneWidget);
+      expect(find.text('Customer Support'), findsOneWidget);
+      expect(find.text('Log Out'), findsOneWidget);
+    });
+
+    testWidgets('Navigates to support screen when customer support is tapped',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(body: ProfileScreen(userData: testUserModel)),
+        routes: {
+          '/home/support': (context) => Scaffold(
+                appBar: AppBar(title: const Text('Customer Support')),
+                body: const Text('Support Screen'),
+              ),
+        },
+      ));
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Customer Support'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Support Screen'), findsOneWidget);
+    });
+  });
+
 }
