@@ -11,12 +11,12 @@ class Login extends StatelessWidget {
   static var code="";
   static var pin="";
 
-  Future<String?> getPasscode(String? phone) async {
+  Future<String?> getPasscode(String? accountNumber) async {
     try {
       final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
           .collection(''
           'Users')
-          .where('phone', isEqualTo: phone)
+          .where('accountNumber', isEqualTo: accountNumber)
           .limit(1)
           .get();
 
@@ -79,7 +79,7 @@ class Login extends StatelessWidget {
                   textColor: const Color(0xFF1C6758),
                   onTap: () async {
                     SharedPreferences prefs = await SharedPreferences.getInstance();
-                    final String? phone = prefs.getString('accNumber');
+                    final String? phone = prefs.getString('accountNumber');
                     final String? passcode=await getPasscode(phone);
 
                     pin=passcode!;

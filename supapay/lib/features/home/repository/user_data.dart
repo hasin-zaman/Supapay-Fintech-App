@@ -9,7 +9,7 @@ final collection = FirebaseFirestore.instance.collection('Users');
 
 Future<UserModel> fetchUser() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String? accNumber = prefs.getString('accNumber');
+  final String? accNumber = prefs.getString('accountNumber');
   final snapshot = await collection.doc(accNumber).get();
   final userData = UserModel.fromJson(snapshot.data()!);
 
@@ -18,7 +18,7 @@ Future<UserModel> fetchUser() async {
 
 Future<List<TransactionModel>> fetchTransactions() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String? accNumber = prefs.getString('accNumber');
+  final String? accNumber = prefs.getString('accountNumber');
   final transactionsCollection =
     collection.doc(accNumber).collection('Transactions');
   List<TransactionModel> transactionsList = [];

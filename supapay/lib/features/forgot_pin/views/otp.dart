@@ -60,7 +60,8 @@ class OTPForgotPIN extends StatelessWidget {
                                   otp="";
 
                                   final SharedPreferences prefs = await SharedPreferences.getInstance();
-                                  await prefs.setString('phone', PhoneVerificationForgotPIN.tempPhone);
+                                  await prefs.setString('accountNumber', PhoneVerificationForgotPIN.tempPhone);
+                                  PhoneVerificationForgotPIN.tempPhone="";
 
                                   Navigator.pushNamedAndRemoveUntil(context, '/forgot-pin/change-pin', (route) => false);
                                 }

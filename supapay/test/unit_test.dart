@@ -119,7 +119,6 @@ void main() {
           email: "test@how.com",
           passcode: "1204",
           profileImageUrl: "",
-          phone: "03110887898",
           accountNumber: "923110887898",
           balance: 0,
           cardNumber: "571",
@@ -128,6 +127,7 @@ void main() {
           iban: "PK SUPA 2000",
           monthlyIncome: 0,
           spendingLimit: 0,
+          role: "Customer",
           );
 
       userDataProvider.setUser(userModel);

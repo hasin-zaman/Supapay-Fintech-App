@@ -51,6 +51,7 @@ dependencies:
   equatable: ^2.0.5
   flutter_animate: ^4.1.1+1
   intl: ^0.18.1
+  grouped_list: ^5.1.2
   # http: ^0.13.5
 
 dev_dependencies:

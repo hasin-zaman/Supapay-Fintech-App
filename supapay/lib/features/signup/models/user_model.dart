@@ -4,7 +4,6 @@ class UserModel {
   String email;
   String passcode;
   String profileImageUrl;
-  String phone;
   String accountNumber;
   int balance;
   String cardNumber;
@@ -13,6 +12,7 @@ class UserModel {
   String iban;
   int monthlyIncome;
   int spendingLimit;
+  String role;
 
   UserModel({
     required this.name,
@@ -20,7 +20,6 @@ class UserModel {
     required this.email,
     required this.passcode,
     required this.profileImageUrl,
-    required this.phone,
     required this.accountNumber,
     required this.balance,
     required this.cardNumber,
@@ -28,7 +27,8 @@ class UserModel {
     required this.expiryDate,
     required this.iban,
     required this.monthlyIncome,
-    required this.spendingLimit
+    required this.spendingLimit,
+    required this.role,
   });
 
   // Convert user object to a map for storing in Firebase Firestore
@@ -39,7 +39,6 @@ class UserModel {
       'email': email,
       'passcode': passcode,
       'profileImageUrl': profileImageUrl,
-      'phone': phone,
       'accountNumber': accountNumber,
       'balance': balance,
       'cardNumber': cardNumber,
@@ -47,7 +46,8 @@ class UserModel {
       'expiryDate': expiryDate,
       'iban': iban,
       'monthlyIncome': monthlyIncome,
-      'spendingLimit': spendingLimit
+      'spendingLimit': spendingLimit,
+      'role': role,
     };
   }
 
@@ -59,7 +59,6 @@ class UserModel {
       email: map['email'],
       passcode: map['passcode'],
       profileImageUrl: map['profileImageUrl'],
-      phone: map['phone'],
       accountNumber: map['accountNumber'],
       balance: map['balance'],
       cardNumber: map['cardNumber'],
@@ -67,7 +66,8 @@ class UserModel {
       expiryDate: map['expiryDate'],
       iban: map['iban'],
       monthlyIncome: map['monthlyIncome'],
-      spendingLimit: map['spendingLimit']
+      spendingLimit: map['spendingLimit'],
+      role: map['role'],
     );
   }
 }

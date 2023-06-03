@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:supapay/features/customer_support/views/chat.dart';
+import 'package:supapay/features/customer_support/views/customer_chats.dart';
+import 'package:supapay/features/customer_support/views/support_chat.dart';
 import 'package:supapay/features/forgot_pin/views/change_pin.dart';
 import 'package:supapay/features/forgot_pin/views/forgot_pin.dart';
 import 'package:supapay/features/forgot_pin/views/otp.dart';
@@ -39,6 +42,9 @@ Map<String, WidgetBuilder> get routes {
     '/home/qr': (context) => const QRScreen(),
     '/home/atms': (context) => const ATMInfo(),
     '/home/support': (context) => const SupportScreen(),
+    '/home/support/chats': (context) => const CustomerChats(),
+    '/home/support/support-chat': (context) => const SupportChat(),
+    '/home/support/chat': (context) => const Chat(),
     '/home/transactions': (context) => TransactionsScreen(),
     '/home/addFunds': (context) => const AddFundsPage(),
     '/home/sendFunds': (context) => SendFundsPage(),

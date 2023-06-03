@@ -169,7 +169,6 @@ class _SignupState extends State<Signup> {
                           email: email.text,
                           passcode: passcode.text,
                           profileImageUrl: "",
-                          phone: '',
                           accountNumber: '',
                           balance: 0,
                           cardNumber: '',
@@ -177,7 +176,9 @@ class _SignupState extends State<Signup> {
                           expiryDate: '',
                           iban: '',
                           monthlyIncome: 0,
-                          spendingLimit: 0);
+                          spendingLimit: 0,
+                          role: '',
+                      );
                       userDataProvider.setUser(userData);
                       Navigator.pushNamed(context, '/phone-verification');
                     }

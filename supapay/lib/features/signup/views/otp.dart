@@ -27,8 +27,8 @@ class OTP extends StatelessWidget {
     Future<void> saveUser(UserModel userData) async {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final usersCollection = FirebaseFirestore.instance.collection('Users');
-      await usersCollection.doc(userData.phone).set(userData.toMap());
-      await prefs.setString('accNumber', userData.phone);
+      await usersCollection.doc(userData.accountNumber).set(userData.toMap());
+      await prefs.setString('accountNumber', userData.accountNumber);
     }
 
     return SafeArea(
