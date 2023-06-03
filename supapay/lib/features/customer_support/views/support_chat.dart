@@ -241,8 +241,6 @@ class _ChatState extends State<SupportChat> {
                           storeMessage(message, SupportChat.accountNumber!);
                           storeChat(chat);
 
-                          SupportChat.accountNumber="";
-
                           setState(() {
                             messages.add(message);
                             messageController.clear();
