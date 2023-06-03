@@ -11,7 +11,7 @@ Future<String> addTransaction(String accNumber, int amount) async {
     return "User Does Not Exist";
   }
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String? userNumber = prefs.getString('accNumber');
+  final String? userNumber = prefs.getString('accountNumber');
   final userCollection = collection.doc(userNumber);
   final userData = await userCollection.get();
 
