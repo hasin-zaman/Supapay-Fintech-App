@@ -7,7 +7,7 @@ final collection = FirebaseFirestore.instance.collection('Users');
 
 Future<List<TransactionModel>> fetchAllTransactions() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String? accNumber = prefs.getString('accNumber');
+  final String? accNumber = prefs.getString('accountNumber');
   final transactionsCollection =
       collection.doc(accNumber).collection('Transactions');
   List<TransactionModel> transactionsList = [];
