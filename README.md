@@ -1,6 +1,6 @@
 <img src="https://github.com/owaisali8/Supapay-Fintech-App/blob/main/supapay/assets/splash.png" />
 
-### Supapay-Fintech-App
+# Supapay-Fintech-App
 An application that provides basic financial services, such as mobile banking and customer support.
 
 ## Features
@@ -23,3 +23,5 @@ An application that provides basic financial services, such as mobile banking an
 ## Technology
 - App: Flutter 
 - Database: Firebase
+
+<img src="https://github.com/hasin-riki/Supapay-Fintech-App/blob/main/screens/login.jpg" />
