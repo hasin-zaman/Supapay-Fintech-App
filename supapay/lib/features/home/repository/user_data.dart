@@ -20,7 +20,7 @@ Future<List<TransactionModel>> fetchTransactions() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? accNumber = prefs.getString('accountNumber');
   final transactionsCollection =
-    collection.doc(accNumber).collection('Transactions');
+    collection.doc(accNumber).collection('Transactions').orderBy('date', descending: true);
   List<TransactionModel> transactionsList = [];
   final snapshot = await transactionsCollection.limit(6).get();
   for (var queryDocumentSnapshot in snapshot.docs) {

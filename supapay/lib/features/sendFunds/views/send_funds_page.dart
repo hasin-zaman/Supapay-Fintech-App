@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supapay/features/sendFunds/bloc/send_funds_bloc.dart';
+import 'package:supapay/global/components/view_heading.dart';
 
 class SendFundsPage extends StatelessWidget {
   SendFundsPage({super.key});
@@ -35,7 +36,7 @@ class SendFundsPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Transaction Successful"),
+                  ViewHeading(heading: "Transaction Successful!", color: Colors.green),
                   TextButton(
                       onPressed: () {
                         Navigator.pop(context);
